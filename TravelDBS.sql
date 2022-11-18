@@ -1,3 +1,6 @@
+create database TravelDBS
+use TravelDBS
+
 CREATE TABLE [User] (
   [userID] int,
   [fullName] varchar(50),
