@@ -1,8 +1,8 @@
 CREATE TABLE [User] (
   [userID] int,
-  [fullName] String,
-  [phoneNumber] String,
-  [email] String,
+  [fullName] varchar(50),
+  [phoneNumber] varchar(10),
+  [email] nvarchar(50),
   [visitDay] date,
   [returnDay] date,
   [visitedDay] date
@@ -11,10 +11,10 @@ GO
 
 CREATE TABLE [Location] (
   [locationID] int,
-  [LocationDes] String,
-  [locationName] String,
+  [LocationDes] varchar(1000),
+  [locationName] varchar(50),
   [rating] float,
   [suggestionDay] date,
-  [phoneNumber] String
+  [phoneNumber] varchar(10)
 )
 GO
