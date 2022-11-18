@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryDark"
-    tools:context=".MainActivity" >
+    tools:context=".locationUI.LocationDetails" >
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
@@ -15,7 +15,6 @@
         android:scaleType="centerCrop"
         app:contentPaddingBottom="@dimen/cardview_compat_inset_shadow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageView" />
