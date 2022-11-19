@@ -1,12 +1,8 @@
-<<<<<<< HEAD
+
 create database TravelDBS;
 
 use TravelDBS
-=======
-create database TravelDBS
-use TravelDBS
 
->>>>>>> 756300ede8b164ef5bae6dff3685ea809ceb3685
 CREATE TABLE [User] (
   [userID] int IDENTITY(1,1) PRIMARY KEY,
   [fullName] varchar(50),
