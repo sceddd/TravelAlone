@@ -6,7 +6,8 @@ user:
 - email						sendTicket(name)| saveUserId(email)									String
 - visitday						alarm() -> notificationGoDay()									Date
 - returnday						alarm() -> notificationRating() -> notificationOnClick(userId)				Date
-- visitedPlace					
+- visitedPlace																			Array
+- status																				MinInt (3)
 location:
 - locId		
 - description																			String

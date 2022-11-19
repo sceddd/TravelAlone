@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +36,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.d("TAG", "onBindViewHolder: ");
+        Location location = locations.get(position);
+        holder.locName.setText(location.getLocName());
     }
 
     @Override
@@ -44,9 +46,10 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
+        TextView locName;
         public MyViewHolder(@NonNull View itemView, LocationInterface locationInterface) {
             super(itemView);
+            locName = (TextView) itemView.findViewById(R.id.location_name);
         }
     }
 }
