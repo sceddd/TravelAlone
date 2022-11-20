@@ -2,7 +2,7 @@
 create database TravelDBS;
 
 use TravelDBS
-
+drop table Location;
 CREATE TABLE [User] (
   [userID] int IDENTITY(1,1) PRIMARY KEY,
   [fullName] varchar(50),
@@ -16,11 +16,11 @@ GO
 
 CREATE TABLE [Location] (
   [locationID] int IDENTITY(1,1) PRIMARY KEY,
-  [LocationDes] varchar(1000),
   [locationName] varchar(50),
   [rating] float,
-  [suggestionDay] date,
+  [suggestionDay] varchar (10),
   [phoneNumber] varchar(10)
 )
 GO
-insert into Location(LocationDes,locationName,rating,suggestionDay,phoneNumber) values ('','Indonesia')
+
+insert into Location(locationName,rating,suggestionDay,phoneNumber) values ('Indonesia','4.5','13/5','0911485802')

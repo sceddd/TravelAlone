@@ -1,28 +1,57 @@
 package com.example.myapplication.model;
 
-public class Location {
-    private String locId,locNumber,locName;
+import java.util.Date;
 
-    public void setLocId(String locId) {
-        this.locId = locId;
+public class Location {
+    private String phoneNumber,locationName;
+    private Date suggestionDate;
+    private int locationID;
+    private float rating;
+
+
+
+    public Location(int locId, String locName, String locNumber, float rating, Date suggestionDate ) {
+        this.locationID = locId;
+        this.phoneNumber = locNumber;
+        this.locationName = locName;
+        this.suggestionDate = suggestionDate;
+        this.rating = rating;
+    }
+    public Date getSuggestionDate() {
+        return suggestionDate;
+    }
+
+    public void setSuggestionDate(Date suggestionDate) {
+        this.suggestionDate = suggestionDate;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    public void setLocId(int locId) {
+        this.locationID = locId;
     }
 
     public void setLocNumber(String locNumber) {
-        this.locNumber = locNumber;
+        this.phoneNumber = locNumber;
     }
 
     public String getLocName() {
-        return locName;
+        return locationName;
     }
 
     public void setLocName(String locName) {
-        this.locName = locName;
+        this.locationName = locName;
     }
 
-    public String getLocId(){
-        return locId;
+    public int getLocId(){
+        return locationID;
     }
     public String getLocNumber(){
-        return locNumber;
+        return phoneNumber;
     }
 }

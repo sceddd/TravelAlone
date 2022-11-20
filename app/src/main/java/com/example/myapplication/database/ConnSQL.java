@@ -10,13 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnSQL {
+    DatabaseInf databaseInf = new DatabaseInf("TravelDBS");
+    public ConnSQL() {
+        conn = getConnection();
+    }
+
     Connection conn;
     // ----------------------------------------------------------------
     // connect to database
     // ----------------------------------------------------------------
     @SuppressLint("NewApi")
-    public Connection getConnection(String database) {
-        DatabaseInf databaseInf = new DatabaseInf(database);
+    private Connection getConnection() {
         StrictMode.ThreadPolicy a = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(a);
         String connectionURL;
