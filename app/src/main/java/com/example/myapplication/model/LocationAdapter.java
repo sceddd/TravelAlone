@@ -50,6 +50,14 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
         public MyViewHolder(@NonNull View itemView, LocationInterface locationInterface) {
             super(itemView);
             locName = (TextView) itemView.findViewById(R.id.location_name);
+            itemView.setOnClickListener(v->{
+                if(locationInterface!= null){
+                    int pos = getAdapterPosition();
+                    if(pos!=RecyclerView.NO_POSITION){
+                        locationInterface.onClickLocation(pos);
+                    }
+                }
+            });
         }
     }
 }

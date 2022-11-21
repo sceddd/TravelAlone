@@ -2,5 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="description">Description</string>
     <string name="descriptionText">DESCRIPTION</string>
-    <string name="near_south_asia">near south asia</string>
+    <string name="near_south_asia">test</string>
+    <string name="text">Text</string>
 </resources>

@@ -26,6 +26,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/bg_app_satu"
                 android:background="@drawable/gradient_shape"
+                app:strokeColor="@null"
             />
 
             <TextView

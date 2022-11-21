@@ -1,27 +1,27 @@
 package com.example.myapplication.model;
 
-import java.util.Date;
+import androidx.annotation.NonNull;
 
 public class Location {
     private String phoneNumber,locationName;
-    private Date suggestionDate;
+    private String suggestionDate;
     private int locationID;
     private float rating;
 
 
 
-    public Location(int locId, String locName, String locNumber, float rating, Date suggestionDate ) {
+    public Location(int locId, String locName, String locNumber, float rating, String suggestionDate ) {
         this.locationID = locId;
         this.phoneNumber = locNumber;
         this.locationName = locName;
         this.suggestionDate = suggestionDate;
         this.rating = rating;
     }
-    public Date getSuggestionDate() {
+    public String getSuggestionDate() {
         return suggestionDate;
     }
 
-    public void setSuggestionDate(Date suggestionDate) {
+    public void setSuggestionDate(String suggestionDate) {
         this.suggestionDate = suggestionDate;
     }
 
@@ -51,7 +51,20 @@ public class Location {
     public int getLocId(){
         return locationID;
     }
+
+
     public String getLocNumber(){
         return phoneNumber;
+    }
+    @NonNull
+    @Override
+    public String toString() {
+        return "Location{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", locationName='" + locationName + '\'' +
+                ", suggestionDate=" + suggestionDate +
+                ", locationID=" + locationID +
+                ", rating=" + rating +
+                '}';
     }
 }

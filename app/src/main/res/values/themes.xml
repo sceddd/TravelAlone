@@ -6,8 +6,8 @@
         <item name="colorAccent">@color/white</item>
     </style>
     <style name="roundedImageView" parent="">
-        <item name="android:endColor">@android:color/darker_gray</item>
-        <item name="android:startColor">@android:color/darker_gray</item>
+<!--        <item name="android:endColor">@android:color/darker_gray</item>-->
+<!--        <item name="android:startColor">@android:color/darker_gray</item>-->
         <item name="android:angle">90</item>
     </style>
 </resources>

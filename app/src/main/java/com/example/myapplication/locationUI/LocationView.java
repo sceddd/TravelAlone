@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
@@ -13,14 +15,14 @@ import com.example.myapplication.model.LocationAdapter;
 import com.example.myapplication.model.LocationInterface;
 //import com.example.myapplication.model.WikiLoc;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LocationView extends AppCompatActivity implements LocationInterface {
     private RecyclerView recyclerView;
-    private ConnSQL conn = new ConnSQL();
-    ArrayList<Location> locations;
+    ArrayList<Location> locations = new ArrayList<>();
     // ------------------------------------------------------------
     //                    RecyclerView Location                  //
     // ------------------------------------------------------------
@@ -28,15 +30,7 @@ public class LocationView extends AppCompatActivity implements LocationInterface
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ResultSet resultSet = conn.getSet("LOCATION");
-        try {
-        while (!resultSet.next()) {
-            Location location = new Location(resultSet.getInt("locationID"),resultSet.getString("locationName"),
-                    resultSet.getString("phoneNumber"),resultSet.getFloat("rating"), resultSet.getDate("suggestionDate"));
-            locations.add(location);
-        }}catch (SQLException e) {
-            e.printStackTrace();
-        }
+        setUpDatabase();
         setContentView(R.layout.recycler_view_location);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -45,8 +39,28 @@ public class LocationView extends AppCompatActivity implements LocationInterface
         recyclerView.setAdapter(locationAdapter);
     }
 
+    protected void setUpDatabase(){
+        ConnSQL c = new ConnSQL();
+        try {
+            ResultSet rs = c.getSet("LOCATION");
+            while (rs.next()){
+                Location location = new Location(rs.getInt("locationID"),rs.getString("locationName"),
+                    rs.getString("phoneNumber"),rs.getFloat("rating"), rs.getString("suggestionDay"));
+                locations.add(location);
+            }
+        }
+        catch (SQLException e) {
+            Log.d("error", "onCreate: "+e);
+        }
+    }
     @Override
-    public void onClickLocation(int post) {
-
+    public void onClickLocation(int pos) {
+        Intent intent = new Intent(this, LocationDetails.class);
+        intent.putExtra("Name",locations.get(pos).getLocName());
+        intent.putExtra("LocationID",locations.get(pos).getLocId());
+        intent.putExtra("PLocation",locations.get(pos).getLocNumber());
+        intent.putExtra("Rating",locations.get(pos).getRating());
+        intent.putExtra("SuggestDay",locations.get(pos).getSuggestionDate());
+        startActivity(intent);
     }
 }

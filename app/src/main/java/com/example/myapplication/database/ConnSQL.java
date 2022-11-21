@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnSQL {
-    DatabaseInf databaseInf = new DatabaseInf("TravelDBS");
+    DatabaseInf databaseInf = new DatabaseInf();
     public ConnSQL() {
         conn = getConnection();
     }
@@ -33,14 +33,12 @@ public class ConnSQL {
         }
         return conn;
     }
-    public void add(){
-
-    }
     public ResultSet getSet(String table){
         ResultSet rs = null;
         try {
             String query = "SELECT * FROM "+table;
             rs = conn.createStatement().executeQuery(query);
+            Log.d("12345", "getSet: "+rs.getString(1));
         }
         catch (SQLException e) {
             Log.d("error", "onCreate: "+e);;
