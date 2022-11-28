@@ -3,6 +3,7 @@ package com.example.myapplication.locationUI;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BuyTicketPage extends AppCompatActivity {
     Button buy_ticket;
@@ -35,9 +39,14 @@ public class BuyTicketPage extends AppCompatActivity {
 
     public void onBuyClick(View v){
         String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
-//        String locQuery = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"++";
+        ResultSet rs = c.getSetWithoutEle("USER","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
+        try {
+            while(!rs.next())
+                Log.d("111111111", "onBuyClick: "+rs.getString(2));
+        } catch (SQLException e){
+            Log.d("111111111111", "onBuyClick: "+e);
+        }
         c.add(query);
-
     }
 
 
