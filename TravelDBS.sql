@@ -24,3 +24,5 @@ CREATE TABLE [Location] (
 GO
 
 insert into Location(locationName,rating,suggestionDay,phoneNumber) values ('Indonesia','4.5','13/5','0911485802')
+
+select * from Location

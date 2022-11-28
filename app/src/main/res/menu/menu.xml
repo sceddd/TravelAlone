@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:iconTint="#E1C8C8"
+        android:title="Search"
+        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/menu_sort"-->
+<!--        android:icon="@drawable/ic_baseline_sort_24"-->
+<!--        android:title="Sort">-->
+<!--        <menu>-->
+<!--            <item-->
+<!--                android:id="@+id/menu_sort_a_to_z"-->
+<!--                android:icon="@drawable/ic_baseline_arrow_drop_up_24"-->
+<!--                android:title="A-Z" />-->
+<!--            <item-->
+<!--                android:id="@+id/menu_sort_z_to_a"-->
+<!--                android:icon="@drawable/ic_baseline_arrow_drop_down_24"-->
+<!--                android:title="Z-A" />-->
+<!--        </menu>-->
+<!--    </item>-->
+</menu>

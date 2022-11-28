@@ -2,7 +2,10 @@ package com.example.myapplication.locationUI;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +13,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
@@ -24,23 +30,36 @@ import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
-public class LocationView extends AppCompatActivity implements LocationInterface {
+public class LocationView extends Fragment implements LocationInterface {
     private RecyclerView recyclerView;
     ArrayList<Location> locations = new ArrayList<>();
     // ------------------------------------------------------------
     //                    RecyclerView Location                  //
     // ------------------------------------------------------------
 
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setUpDatabase();
         setContentView(R.layout.recycler_view_location);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         LocationAdapter locationAdapter = new LocationAdapter(this,locations,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(locationAdapter);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     protected void setUpDatabase(){
