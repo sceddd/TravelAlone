@@ -25,6 +25,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,32 +60,24 @@ public class BuyTicketPage extends AppCompatActivity {
     }
 
     public void html2json(String html){
-        Document document = Jsoup.parse(html);
-        Element table = document.select("table").first();
-        String arrayName = table.select("th").first().text();
-        JSONObject jsonObj = new JSONObject();
-        JSONArray jsonArr = new JSONArray();
-        Elements ttls = table.getElementsByClass("ttl");
-        Elements nfos = table.getElementsByClass("nfo");
-        try {
-            JSONObject jo = new JSONObject();
-            for (int i = 0, l = ttls.size(); i < l; i++) {
-                String key = ttls.get(i).text();
-                String value = nfos.get(i).text();
-                jo.put(key, value);
+        Document doc = Jsoup.parse(html);
+        Element table = doc.select("table").first();
+        Elements locationName = table.select("td");
+        ArrayList<String> locationS = new ArrayList<>();
+        for (int i=0;i<locationName.size()-1;i++){
+            if(locationName.get(i).text().equals("\\n"))
+            {
+                locationS.add(locationName.get(i+1).text());
+                i++;
             }
-            jsonArr.put(jo);
-            jsonObj.put(arrayName, jsonArr);
-            System.out.println(jsonObj.toString());
-        }catch (JSONException e){
-            Log.d("111111111111111", "html2json: ");
         }
+        Log.d("1111111111", "html2json: "+locationS);
     }
     public void onBuyClick(View v){
 
     }
-    public void sendMail(){
-        //        final String email_address = "testaccfbp@gmail.com";
+//    public void sendMail(){
+//        final String email_address = "testaccfbp@gmail.com";
 //        final String password = "021002ht";
 //        final String body = "Your ticket is abcxyz";
 //
@@ -110,5 +103,5 @@ public class BuyTicketPage extends AppCompatActivity {
 //                Log.d("send mail....", "onClick: "+e);
 //            }
 //        }
-    }
+//    }
 }
