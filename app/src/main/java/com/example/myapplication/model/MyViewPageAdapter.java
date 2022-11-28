@@ -22,8 +22,8 @@ public class MyViewPageAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new HomeFragment();
-//                return new LocationView();
+//                return new HomeFragment();
+                return new LocationView();
             case 1:
                 return new FavFragment();
             case 2:

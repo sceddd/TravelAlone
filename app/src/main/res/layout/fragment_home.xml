@@ -1,71 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".locationUI.HomeFragment"
-    android:background="@color/yellow"
-    android:id="@+id/homepage"
-    android:orientation="vertical">
+    android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/homepage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:orientation="vertical"
+        tools:context=".locationUI.HomeFragment">
 
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Continents"-->
-<!--        android:textColor="#33691E" />-->
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continents"
+            android:textColor="#33691E" />
 
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">-->
+        <HorizontalScrollView
+            android:scrollbarThumbHorizontal="@null"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center">
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabAsia"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Asia" />-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabEurope"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Europe" />-->
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All" />
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabAfrica"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Africa" />-->
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="North" />
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabAmerica"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="America" />-->
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Central" />
 
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:id="@+id/tabAustralia"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Australia" />-->
-<!--    </com.google.android.material.tabs.TabLayout>-->
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="South" />
+                <Button
+                    android:id="@+id/btn5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="South" />
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="South" />
+                <Button
+                    android:id="@+id/btn7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="South" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
-<!--    <androidx.viewpager2.widget.ViewPager2-->
-<!--        android:id="@+id/vpHome"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:background="@color/purple_500"/>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="299dp" />
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Popular"-->
-<!--        android:textColor="#33691E" />-->
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+        <TextView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Popular"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
