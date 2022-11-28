@@ -18,10 +18,8 @@ import com.example.myapplication.model.LocationAdapter;
 import com.example.myapplication.model.LocationInterface;
 //import com.example.myapplication.model.WikiLoc;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 
 public class LocationView extends AppCompatActivity implements LocationInterface {
@@ -46,7 +44,7 @@ public class LocationView extends AppCompatActivity implements LocationInterface
     protected void setUpDatabase(){
         ConnSQL c = new ConnSQL();
         try {
-            ResultSet rs = c.getSet("LOCATION");
+            ResultSet rs = c.getFullSet("LOCATION");
             while (rs.next()){
                 Location location = new Location(rs.getInt("locationID"),rs.getString("locationName"),
                     rs.getString("phoneNumber"),rs.getFloat("rating"), rs.getString("suggestionDay"));

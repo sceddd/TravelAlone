@@ -3,57 +3,40 @@ package com.example.myapplication.locationUI;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.jsonplaceholder.LocationCities;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
+import com.example.myapplication.database.ConnSQL;
 
 public class BuyTicketPage extends AppCompatActivity {
     Button buy_ticket;
-    EditText email_address_pt;
+    EditText email_address_pt,username,phoneNumber;
     TextView locationName;
-
+    ConnSQL c = new ConnSQL();
     @SuppressLint("QueryPermissionsNeeded")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buy_ticket_page);
+        username = findViewById(R.id.user_name_pt);
+        phoneNumber = findViewById(R.id.phone_number_pt);
         buy_ticket = findViewById(R.id.buy_button);
         email_address_pt = findViewById(R.id.email_address_pt);
         locationName = findViewById(R.id.location_name_bt);
         // set send Email for the user the information of the ticket
         locationName.setText(getIntent().getStringExtra("LOCATION"));
         buy_ticket.setOnClickListener(this::onBuyClick);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
     }
 
     public void onBuyClick(View v){
+        String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
+//        String locQuery = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"++";
+        c.add(query);
 
     }
 

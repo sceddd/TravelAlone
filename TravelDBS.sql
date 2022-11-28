@@ -15,10 +15,10 @@ CREATE TABLE [Location] (
   [locationName] varchar(50),
   [rating] float,
   [suggestionDay] varchar (10),
-  [phoneNumber] varchar(10)
+  [phoneNumber] varchar(10),
+  [visitedTime] int default 0
 )
 GO
-
 CREATE TABLE [HistoryBook](
 	[histoID] int IDENTITY(1,1) Primary Key,
 	[userID] int ,

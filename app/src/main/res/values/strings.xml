@@ -10,4 +10,5 @@
     <string name="buy">BUY</string>
     <string name="age">Age</string>
     <string name="location">Location</string>
+    <string name="visit">Visit</string>
 </resources>

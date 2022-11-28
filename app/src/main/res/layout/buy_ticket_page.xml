@@ -44,7 +44,7 @@
         android:id="@+id/email_address_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
+
         android:layout_marginTop="37dp"
         android:text="@string/email"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
         android:text="@string/age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_address_tv" />
@@ -111,5 +111,35 @@
         android:text="@string/location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/year_picker"
+        android:layout_width="50dp"
+        android:layout_height="180dp"
+        tools:layout_editor_absoluteX="194dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <NumberPicker
+        android:id="@+id/day_picker"
+        android:layout_width="50dp"
+        android:layout_height="180dp"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <TextView
+        android:id="@+id/visit_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="@string/visit"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <NumberPicker
+        android:id="@+id/month_picker"
+        android:layout_width="50dp"
+        android:layout_height="180dp"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="382dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

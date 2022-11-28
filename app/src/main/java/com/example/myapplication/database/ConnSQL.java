@@ -20,7 +20,7 @@ public class ConnSQL {
     // connect to database
     // ----------------------------------------------------------------
     @SuppressLint("NewApi")
-    private Connection getConnection() {
+    public Connection getConnection() {
         StrictMode.ThreadPolicy a = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(a);
         String connectionURL;
@@ -34,16 +34,26 @@ public class ConnSQL {
         return conn;
     }
     
-    public ResultSet getSet(String table){
+    public ResultSet getFullSet(String table){
+        return getSetWithoutEle(table,"*");
+    }
+    public ResultSet getSetWithoutEle(String table, String eles){
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM "+table;
+            String query = "SELECT " + eles + " FROM " +table;
             rs = conn.createStatement().executeQuery(query);
-        }
-        catch (SQLException e) {
-            Log.d("Error Get Set", "onCreate: "+e);;
+        }catch (SQLException e){
+            Log.d("11111111", "getSetWithoutEle: "+e);
         }
         return rs;
+    }
+    public void add(String query){
+        try{
+            conn.createStatement().execute(query);
+        }catch(Exception e){
+
+        }
+
     }
     public void updateSet(String table, String col, String where){
         try{
