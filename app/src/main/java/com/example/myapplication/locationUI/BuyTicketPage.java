@@ -39,10 +39,10 @@ public class BuyTicketPage extends AppCompatActivity {
 
     public void onBuyClick(View v){
         String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
-        ResultSet rs = c.getSetWithoutEle("USER","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
+        ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
         try {
-            while(!rs.next())
-                Log.d("111111111", "onBuyClick: "+rs.getString(2));
+            while(rs.next())
+                Log.d("111111111", "onBuyClick: "+rs.getString("userID"));
         } catch (SQLException e){
             Log.d("111111111111", "onBuyClick: "+e);
         }
