@@ -51,31 +51,30 @@ public class BuyTicketPage extends AppCompatActivity {
         buy_ticket.setOnClickListener(this::onBuyClick);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://en.wikipedia.org/")
-                .addConverterFactory(ScalarsConverterFactory.create())
-                // add other factories here, if needed.
-                .build();
-        LocationCities locationCities = retrofit.create(LocationCities.class);
     }
 
-    public void html2json(String html){
-        Document doc = Jsoup.parse(html);
-        Element table = doc.select("table").first();
-        Elements locationName = table.select("td");
-        ArrayList<String> locationS = new ArrayList<>();
-        for (int i=0;i<locationName.size()-1;i++){
-            if(locationName.get(i).text().equals("\\n"))
-            {
-                locationS.add(locationName.get(i+1).text());
-                i++;
-            }
-        }
-        Log.d("1111111111", "html2json: "+locationS);
-    }
     public void onBuyClick(View v){
 
     }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://en.wikipedia.org/")
+//                .addConverterFactory(ScalarsConverterFactory.create())
+//                // add other factories here, if needed.
+//                .build();
+//        LocationCities locationCities = retrofit.create(LocationCities.class);
 //    public void sendMail(){
 //        final String email_address = "testaccfbp@gmail.com";
 //        final String password = "021002ht";
@@ -104,4 +103,18 @@ public class BuyTicketPage extends AppCompatActivity {
 //            }
 //        }
 //    }
-}
+
+//    public void html2json(String html){
+//        Document doc = Jsoup.parse(html);
+//        Element table = doc.select("table").first();
+//        Elements locationName = table.select("td");
+//        ArrayList<String> locationS = new ArrayList<>();
+//        for (int i=0;i<locationName.size()-1;i++){
+//            if(locationName.get(i).text().equals("\\n"))
+//            {
+//                locationS.add(locationName.get(i+1).text());
+//                i++;
+//            }
+//        }
+//        Log.d("1111111111", "html2json: "+locationS);
+//    }
