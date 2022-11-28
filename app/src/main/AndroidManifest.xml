@@ -28,12 +28,8 @@
         </activity>
         <activity
             android:name=".locationUI.BuyTicketPage"
-<<<<<<< HEAD
-            android:exported="false">
-
-=======
             android:exported="false" >
->>>>>>> 78a0cda61fbf3d7be1271f90bb2cf238b3fb1c2d
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -49,11 +45,7 @@
         </activity>
         <activity
             android:name=".locationUI.LocationDetails"
-<<<<<<< HEAD
             android:exported="false">
-=======
-            android:exported="true" >
->>>>>>> 78a0cda61fbf3d7be1271f90bb2cf238b3fb1c2d
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -10,13 +10,11 @@
     <string name="buy">BUY</string>
     <string name="age">Age</string>
     <string name="location">Location</string>
-<<<<<<< HEAD
     <string name="visit">Visit</string>
-=======
 
     <string name="bottom_home">Home</string>
     <string name="bottom_favorite">Favorite</string>
     <string name="bottom_gift">Gift</string>
     <string name="bottom_more">More</string>
->>>>>>> 78a0cda61fbf3d7be1271f90bb2cf238b3fb1c2d
+
 </resources>

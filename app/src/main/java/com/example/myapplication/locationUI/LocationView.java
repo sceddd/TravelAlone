@@ -46,11 +46,10 @@ public class LocationView extends Fragment implements LocationInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpDatabase();
-        setContentView(R.layout.recycler_view_location);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        LocationAdapter locationAdapter = new LocationAdapter(this,locations,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LocationAdapter locationAdapter = new LocationAdapter(getContext(),locations,this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(locationAdapter);
     }
 
@@ -76,7 +75,7 @@ public class LocationView extends Fragment implements LocationInterface {
     }
     @Override
     public void onClickLocation(int pos) {
-        Intent intent = new Intent(this, LocationDetails.class);
+        Intent intent = new Intent(getContext(), LocationDetails.class);
         intent.putExtra("Name",locations.get(pos).getLocName());
         intent.putExtra("LocationID",locations.get(pos).getLocId());
         intent.putExtra("PLocation",locations.get(pos).getLocNumber());
