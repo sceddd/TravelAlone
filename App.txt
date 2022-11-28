@@ -10,8 +10,8 @@ user:
 - status																				MinInt (3)
 location:
 - locId		
-- description																			String
-- name																				Date
+- description																			String			finish...
+- name																				Date				finish...
 - rating	 					vote() -> caculateRating(rating) -> updateRating() -> suggestionUpdate()		float random (1,5)/100	
 - suggestionDay																			Date
 - pNumber																				String

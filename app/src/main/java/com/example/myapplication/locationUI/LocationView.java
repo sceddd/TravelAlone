@@ -1,9 +1,12 @@
 package com.example.myapplication.locationUI;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.example.myapplication.model.LocationInterface;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 public class LocationView extends AppCompatActivity implements LocationInterface {
@@ -61,6 +65,17 @@ public class LocationView extends AppCompatActivity implements LocationInterface
         intent.putExtra("PLocation",locations.get(pos).getLocNumber());
         intent.putExtra("Rating",locations.get(pos).getRating());
         intent.putExtra("SuggestDay",locations.get(pos).getSuggestionDate());
-        startActivity(intent);
+        launchLocationDetail.launch(intent);
     }
+
+    ActivityResultLauncher<Intent> launchLocationDetail = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    if (intent!=null) {
+
+                    }
+                }
+            });
 }

@@ -33,17 +33,24 @@ public class ConnSQL {
         }
         return conn;
     }
+    
     public ResultSet getSet(String table){
         ResultSet rs = null;
         try {
             String query = "SELECT * FROM "+table;
             rs = conn.createStatement().executeQuery(query);
-            Log.d("12345", "getSet: "+rs.getString(1));
         }
         catch (SQLException e) {
-            Log.d("error", "onCreate: "+e);;
+            Log.d("Error Get Set", "onCreate: "+e);;
         }
         return rs;
+    }
+    public void updateSet(String table, String col, String where){
+        try{
+            conn.createStatement().executeQuery("UPDATE "+ table +" SET "+col+" WHERE "+where);
+        }catch (SQLException e) {
+            Log.d("Error Update Set", "updateSet: "+e);
+        }
     }
 }
 

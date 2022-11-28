@@ -49,7 +49,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
         TextView locName;
         public MyViewHolder(@NonNull View itemView, LocationInterface locationInterface) {
             super(itemView);
-            locName = (TextView) itemView.findViewById(R.id.location_name);
+            locName = itemView.findViewById(R.id.location_name);
             itemView.setOnClickListener(v->{
                 if(locationInterface!= null){
                     int pos = getAdapterPosition();

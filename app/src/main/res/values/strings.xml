@@ -4,4 +4,10 @@
     <string name="descriptionText">DESCRIPTION</string>
     <string name="near_south_asia">test</string>
     <string name="text">Text</string>
+    <string name="name_tv">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="buy">BUY</string>
+    <string name="age">Age</string>
+    <string name="location">Location</string>
 </resources>

@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
-        android:text="@string/description"
         android:textColor="@color/darkColor"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +48,7 @@
         android:id="@+id/description_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:lineSpacingExtra="2dp"
         android:text="@string/descriptionText"
         android:textColor="@color/white"
@@ -59,15 +58,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/ticket_page"
         android:layout_width="315dp"
         android:layout_height="77dp"
-        android:padding="3dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/btnbuy"
+        android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/exitBtn"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:background="@null"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:isIndicator="true"
+        android:progressTint="@color/duskYellow"
+        android:progressBackgroundTint="@color/darkColor"
+        android:stepSize="0.5"
+        android:max="5"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
