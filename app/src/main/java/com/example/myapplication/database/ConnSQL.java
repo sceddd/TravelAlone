@@ -38,9 +38,14 @@ public class ConnSQL {
         return getSetWithoutEle(table,"*");
     }
     public ResultSet getSetWithoutEle(String table, String eles){
+        return getSetWithoutEle(table,eles,"");
+    }
+    public ResultSet getSetWithoutEle(String table, String eles,String where){
         ResultSet rs = null;
         try {
-            String query = "SELECT " + eles + " FROM " +table;
+            String query = "SELECT " + eles + " FROM " +table +" WHERE "+where;
+            if (where.equals(""))
+                query = query.replace(" WHERE "+where,"");
             rs = conn.createStatement().executeQuery(query);
         }catch (SQLException e){
             Log.d("11111111", "getSetWithoutEle: "+e);
@@ -50,10 +55,9 @@ public class ConnSQL {
     public void add(String query){
         try{
             conn.createStatement().execute(query);
-        }catch(Exception e){
-
+        }catch(SQLException e){
+            Log.d("111111111111", "add: "+e);
         }
-
     }
     public void updateSet(String table, String col, String where){
         try{

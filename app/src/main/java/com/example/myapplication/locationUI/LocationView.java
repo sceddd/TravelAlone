@@ -39,7 +39,7 @@ public class LocationView extends Fragment implements LocationInterface {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.recycler_view_location,container,false);
     }
 
     @Override
@@ -47,16 +47,15 @@ public class LocationView extends Fragment implements LocationInterface {
         super.onViewCreated(view, savedInstanceState);
         setUpDatabase();
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
         LocationAdapter locationAdapter = new LocationAdapter(getContext(),locations,this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(locationAdapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     protected void setUpDatabase(){

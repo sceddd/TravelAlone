@@ -21,11 +21,14 @@ public class MyViewPageAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position){
+<<<<<<< HEAD
             case 0:
 //                return new HomeFragment();
                 return new LocationView();
+=======
+>>>>>>> fa36ceea32abdb651d00a93f531d33267da86f88
             case 1:
-                return new FavFragment();
+                return new LocationView();
             case 2:
                 return new GiftFragment();
             case 3:

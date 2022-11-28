@@ -1,9 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyApplication" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorAccent">@color/white</item>
+    <style name="Theme.MyApplication" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
     <style name="roundedImageView" parent="">
 <!--        <item name="android:endColor">@android:color/darker_gray</item>-->

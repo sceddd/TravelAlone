@@ -31,24 +31,21 @@ public class MainActivity extends AppCompatActivity {
         MyViewPageAdapter myViewPageAdapter = new MyViewPageAdapter(this);
         viewPager2.setAdapter(myViewPageAdapter);
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.bottom_home){
-                    viewPager2.setCurrentItem(0);
-                }
-                if (id == R.id.bottom_favorite){
-                    viewPager2.setCurrentItem(1);
-                }
-                if (id == R.id.bottom_gift){
-                    viewPager2.setCurrentItem(2);
-                }
-                if (id == R.id.bottom_more){
-                    viewPager2.setCurrentItem(3);
-                }
-                return true;
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.bottom_home){
+                viewPager2.setCurrentItem(0);
             }
+            if (id == R.id.bottom_favorite){
+                viewPager2.setCurrentItem(1);
+            }
+            if (id == R.id.bottom_gift){
+                viewPager2.setCurrentItem(2);
+            }
+            if (id == R.id.bottom_more){
+                viewPager2.setCurrentItem(3);
+            }
+            return true;
         });
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
