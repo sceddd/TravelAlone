@@ -2,7 +2,6 @@ package com.example.myapplication.locationUI;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +19,7 @@ import java.sql.SQLException;
 public class BuyTicketPage extends AppCompatActivity {
     Button buy_ticket;
     EditText email_address_pt,username,phoneNumber;
+    int locationID;
     TextView locationName;
     ConnSQL c = new ConnSQL();
     @SuppressLint("QueryPermissionsNeeded")
@@ -33,23 +33,36 @@ public class BuyTicketPage extends AppCompatActivity {
         email_address_pt = findViewById(R.id.email_address_pt);
         locationName = findViewById(R.id.location_name_bt);
         // set send Email for the user the information of the ticket
+
         locationName.setText(getIntent().getStringExtra("LOCATION"));
+        locationID = getIntent().getIntExtra("LocationID",0);
+
         buy_ticket.setOnClickListener(this::onBuyClick);
     }
 
     public void onBuyClick(View v){
-        String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
-        ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
+               int userID = 0;
         try {
-            while(rs.next())
-                Log.d("111111111", "onBuyClick: "+rs.getString("userID"));
+            ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
+            if (!rs.next()){
+                String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
+                c.add(query);
+                userID = rs.getInt("userID");
+            }
+
         } catch (SQLException e){
+            try {
+                ResultSet rs = c.getFullSet("USERS");
+                rs.last();
+                userID = rs.getInt("userID");
+            }catch (SQLException ex){
+                Log.d("2222222222", "onBuyClick: "+e);
+            }
             Log.d("111111111111", "onBuyClick: "+e);
         }
-        c.add(query);
+        String historyQue = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"+userID+"','"+locationID+"','2002/12/01','2002/12/02')";
+        c.add(historyQue);
     }
-
-
 }
 
 

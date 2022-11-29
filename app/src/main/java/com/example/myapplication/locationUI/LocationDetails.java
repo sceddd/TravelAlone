@@ -80,6 +80,7 @@ public class LocationDetails extends AppCompatActivity {
     public void onClickToBuyTicket(View v){
         Intent intent = new Intent(LocationDetails.this, BuyTicketPage.class);
         intent.putExtra("LOCATION", locationName);
+        intent.putExtra("LocationID",locationID);
         ticketPageLaunch.launch(intent);
     }
     ActivityResultLauncher<Intent> ticketPageLaunch = registerForActivityResult(

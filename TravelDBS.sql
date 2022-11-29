@@ -25,12 +25,15 @@ CREATE TABLE [HistoryBook](
 	[locationID] int ,
 	[visitDay] Date ,
 	[returnDay] Date,
-	[status] bit,
+	[status] bit default 0,
 	CONSTRAINT FK_UserOrder Foreign Key (userID) references Users(userID),
 	CONSTRAINT FK_LocationOrder Foreign Key (locationID) references Location(locationID)
 )
 drop table HistoryBook
 insert into Location(locationName,rating,suggestionDay,phoneNumber) values ('Indonesia','4.5','13/5','0911485802')
 select * from Users
+SELECT * FROM USERS
 select * from Location
 select * from HistoryBook
+SELECT userID FROM [USERS] WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'
+SELECT userID FROM USERS WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'

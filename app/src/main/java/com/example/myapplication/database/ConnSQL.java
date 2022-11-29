@@ -46,7 +46,8 @@ public class ConnSQL {
             String query = "SELECT " + eles + " FROM " +table +" WHERE "+where;
             if (where.equals(""))
                 query = query.replace(" WHERE "+where,"");
-            rs = conn.createStatement().executeQuery(query);
+            Log.d("111111111", "getSetWithoutEle: "+query);
+            rs = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY).executeQuery(query);
         }catch (SQLException e){
             Log.d("11111111", "getSetWithoutEle: "+e);
         }
