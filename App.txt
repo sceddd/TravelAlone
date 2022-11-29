@@ -4,10 +4,7 @@ user:
 - name 																				String
 - pnumber						saveUserId(pnumber)											String
 - email						sendTicket(name)| saveUserId(email)									String
-- visitday						alarm() -> notificationGoDay()									Date
-- returnday						alarm() -> notificationRating() -> notificationOnClick(userId)				Date
-- visitedPlace																			Array
-- status																				MinInt (3)
+
 location:
 - locId		
 - description																			String			finish...
@@ -15,3 +12,9 @@ location:
 - rating	 					vote() -> caculateRating(rating) -> updateRating() -> suggestionUpdate()		float random (1,5)/100	
 - suggestionDay																			Date
 - pNumber																				String
+historybook:
+- locID
+- userID						
+- status																				MinInt (3)
+- visitday						alarm() -> notificationGoDay()									Date
+- returnday						alarm() -> notificationRating() -> notificationOnClick(userId)				Date
