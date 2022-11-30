@@ -1,6 +1,11 @@
 package com.example.myapplication.locationUI;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
+import com.example.myapplication.sendNotification.MyReceiver;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,35 +39,49 @@ public class BuyTicketPage extends AppCompatActivity {
         email_address_pt = findViewById(R.id.email_address_pt);
         locationName = findViewById(R.id.location_name_bt);
         // set send Email for the user the information of the ticket
-
+        createNotification();
         locationName.setText(getIntent().getStringExtra("LOCATION"));
         locationID = getIntent().getIntExtra("LocationID",0);
 
         buy_ticket.setOnClickListener(this::onBuyClick);
     }
-
+    @SuppressLint("UnspecifiedImmutableFlag")
     public void onBuyClick(View v){
-               int userID = 0;
+        int userID = 0;
         try {
             ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
-            if (!rs.next()){
-                String query = "insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')";
-                c.add(query);
-                userID = rs.getInt("userID");
-            }
-
+            userID = rs.getInt("userID");
         } catch (SQLException e){
-            try {
+            c.add("insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')");
+            try{
                 ResultSet rs = c.getFullSet("USERS");
                 rs.last();
                 userID = rs.getInt("userID");
-            }catch (SQLException ex){
-                Log.d("2222222222", "onBuyClick: "+e);
+            }catch (Exception ex){
+                Log.d("zzzzzzz", "onBuyClick: ");
             }
             Log.d("111111111111", "onBuyClick: "+e);
         }
+        Log.d("222222222333userID", "onBuyClick: "+userID);
         String historyQue = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"+userID+"','"+locationID+"','2002/12/01','2002/12/02')";
         c.add(historyQue);
+        Intent intent = new Intent(BuyTicketPage.this, MyReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,intent,0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        long timeAtButtonClick = System.currentTimeMillis();
+        long tenSecondsInMillis = 1000 * 10; // TODO: setting time when user return;
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                timeAtButtonClick + tenSecondsInMillis,pendingIntent);
+    }
+    private void createNotification(){
+        CharSequence name = "RatingForTheTrip";
+        String description = "Do you have a happy trip";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel("123", name, importance);
+        channel.setDescription(description);
+
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 }
 
