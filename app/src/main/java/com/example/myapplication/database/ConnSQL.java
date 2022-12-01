@@ -53,18 +53,20 @@ public class ConnSQL {
         }
         return rs;
     }
-    public void add(String query){
+    public ResultSet executeQ(String query){
+        ResultSet rs = null;
         try{
-            conn.createStatement().execute(query);
+            rs = conn.createStatement().executeQuery(query);
         }catch(SQLException e){
-            Log.d("111111111111", "add: "+e);
+            Log.d("ERROR EXECUTE QUERY", "exec: "+e);
         }
+        return rs;
     }
     public void updateSet(String table, String col, String where){
         try{
             conn.createStatement().executeQuery("UPDATE "+ table +" SET "+col+" WHERE "+where);
         }catch (SQLException e) {
-            Log.d("Error Update Set", "updateSet: "+e);
+            Log.d("ERROR UPDATE SET", "updateSet: "+e);
         }
     }
 }

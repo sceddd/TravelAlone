@@ -2,8 +2,6 @@ package com.example.myapplication.locationUI;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
-import com.example.myapplication.sendNotification.MyReceiver;
+import com.example.myapplication.sendNotification.RatingNotification;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BuyTicketPage extends AppCompatActivity {
+    // TODO: setting time when user return;
+    // TODO: setting another notification when user go
     Button buy_ticket;
     EditText email_address_pt,username,phoneNumber;
     int locationID;
@@ -39,7 +39,6 @@ public class BuyTicketPage extends AppCompatActivity {
         email_address_pt = findViewById(R.id.email_address_pt);
         locationName = findViewById(R.id.location_name_bt);
         // set send Email for the user the information of the ticket
-        createNotification();
         locationName.setText(getIntent().getStringExtra("LOCATION"));
         locationID = getIntent().getIntExtra("LocationID",0);
 
@@ -52,7 +51,7 @@ public class BuyTicketPage extends AppCompatActivity {
             ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
             userID = rs.getInt("userID");
         } catch (SQLException e){
-            c.add("insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')");
+            c.executeQ("insert into Users (fullName,phoneNumber,email) values ('"+username.getText()+"','"+phoneNumber.getText()+"','"+email_address_pt.getText()+"')");
             try{
                 ResultSet rs = c.getFullSet("USERS");
                 rs.last();
@@ -62,30 +61,22 @@ public class BuyTicketPage extends AppCompatActivity {
             }
             Log.d("111111111111", "onBuyClick: "+e);
         }
-        Log.d("222222222333userID", "onBuyClick: "+userID);
         String historyQue = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"+userID+"','"+locationID+"','2002/12/01','2002/12/02')";
-        c.add(historyQue);
-        Intent intent = new Intent(BuyTicketPage.this, MyReceiver.class);
+        c.executeQ(historyQue);
+        Intent intent = new Intent(BuyTicketPage.this, RatingNotification.class);
+        intent.putExtra("userID", userID);
+        intent.putExtra("locationID", locationID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,intent,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         long timeAtButtonClick = System.currentTimeMillis();
-        long tenSecondsInMillis = 1000 * 10; // TODO: setting time when user return;
-        alarmManager.set(AlarmManager.RTC_WAKEUP,
+        long tenSecondsInMillis = getTimeUserReturn();
+        alarmManager.set(AlarmManager.RTC_WAKEUP, 
                 timeAtButtonClick + tenSecondsInMillis,pendingIntent);
     }
-    private void createNotification(){
-        CharSequence name = "RatingForTheTrip";
-        String description = "Do you have a happy trip";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel("123", name, importance);
-        channel.setDescription(description);
-
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
+    private long getTimeUserReturn(){
+        return 1000 * 10;
     }
 }
-
-
 
 
 

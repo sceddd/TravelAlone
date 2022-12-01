@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -21,6 +22,8 @@ import com.example.myapplication.model.WikiLoc.WikiLoc;
 //import com.example.myapplication.model.WikiLoc;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -35,7 +38,6 @@ public class LocationDetails extends AppCompatActivity {
     TextView description,locName;
     RatingBar ratingBar;
     ImageButton imB,ticketPageBtn;
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +49,27 @@ public class LocationDetails extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
-
-        locationName = getIntent().getStringExtra("Name");
-        phoneNumber = getIntent().getStringExtra("PLocation");
         locationID = getIntent().getIntExtra("LocationID",0);
-        suggestionDate = getIntent().getStringExtra("SuggestDay");
-        rating = getIntent().getFloatExtra("Rating",0);
+        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"')");
+
+        try {
+            rs.next();
+            locationName = rs.getString("locationName");
+            phoneNumber = rs.getString("phoneNumber");
+            suggestionDate = rs.getString("suggestionDay");
+            rating = rs.getFloat("rating");
+        } catch (SQLException e) {
+            Log.d("ERROR GET VALUE", "onCreate: "+e);
+        }
+
 
         locName.setText(locationName);
         ratingBar.setRating(rating);
         imB.setColorFilter(Color.argb(255, 255, 255, 255));
 
         imB.setOnClickListener(v -> finish());
-        ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
-            c.updateSet("LOCATION","RATING = "+ v, "LOCATIONID = "+ locationID);
-        });
+        ratingBar.setOnRatingBarChangeListener((r,v,b)-> c.updateSet("LOCATION","RATING = "+ v
+                , "LOCATIONID = "+ locationID));
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
         // get description for the location on wiki
