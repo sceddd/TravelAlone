@@ -24,7 +24,7 @@ public class RatingNotification extends BroadcastReceiver {
         c.updateSet("HistoryBook","status","userID = '"+userID+"', locationID = '"+locationID+"')");
         ratingActivity.putExtra("LocationID",locationID);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,100,ratingActivity,PendingIntent.FLAG_CANCEL_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"123")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"onTripReturn")
                 .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Do you have a nice trip??")
                 .setAutoCancel(true)
@@ -32,6 +32,5 @@ public class RatingNotification extends BroadcastReceiver {
                 .setContentText("Rating for the trip");
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
         managerCompat.notify(200, builder.build());
-
     }
 }

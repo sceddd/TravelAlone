@@ -2,6 +2,7 @@ package com.example.myapplication.locationUI;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -9,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -27,6 +29,8 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -50,8 +54,8 @@ public class LocationDetails extends AppCompatActivity {
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
         locationID = getIntent().getIntExtra("LocationID",0);
-        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"')");
-
+        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
+        Log.d("1111", "onCreate: "+"SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"')");
         try {
             rs.next();
             locationName = rs.getString("locationName");
@@ -73,7 +77,8 @@ public class LocationDetails extends AppCompatActivity {
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
         // get description for the location on wiki
-
+        StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(strictMode);
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://en.wikipedia.org/").addConverterFactory(GsonConverterFactory.create()).build();
         JsonPlaceHolder jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
         Call<WikiLoc> call = jsonPlaceHolder.getWiki(locationName);
@@ -82,7 +87,9 @@ public class LocationDetails extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         description.setText(descript);
+
     }
 
     public void onClickToBuyTicket(View v){

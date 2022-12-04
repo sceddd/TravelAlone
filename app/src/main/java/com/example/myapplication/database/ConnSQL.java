@@ -29,7 +29,7 @@ public class ConnSQL {
             connectionURL = databaseInf.getDb();
             conn = DriverManager.getConnection(connectionURL);
         }catch(Exception e) {
-            Log.e("error", ""+e);
+            Log.e("ERROR LOGIN DATABASE", ""+e);
         }
         return conn;
     }
@@ -46,7 +46,6 @@ public class ConnSQL {
             String query = "SELECT " + eles + " FROM " +table +" WHERE "+where;
             if (where.equals(""))
                 query = query.replace(" WHERE "+where,"");
-            Log.d("111111111", "getSetWithoutEle: "+query);
             rs = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY).executeQuery(query);
         }catch (SQLException e){
             Log.d("11111111", "getSetWithoutEle: "+e);
