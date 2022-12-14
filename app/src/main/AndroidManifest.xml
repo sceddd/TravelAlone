@@ -45,6 +45,7 @@
                 android:value="" />
         </activity>
         <activity
+            android:theme="@style/Theme.Design.NoActionBar"
             android:name=".locationUI.LocationDetails"
             android:exported="false">
             <meta-data
