@@ -55,7 +55,6 @@ public class LocationDetails extends AppCompatActivity {
         ticketPageBtn = findViewById(R.id.ticket_page);
         locationID = getIntent().getIntExtra("LocationID",0);
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
-        Log.d("1111", "onCreate: "+"SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"')");
         try {
             rs.next();
             locationName = rs.getString("locationName");
@@ -65,15 +64,16 @@ public class LocationDetails extends AppCompatActivity {
         } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
-
-
         locName.setText(locationName);
         ratingBar.setRating(rating);
         imB.setColorFilter(Color.argb(255, 255, 255, 255));
 
         imB.setOnClickListener(v -> finish());
-        ratingBar.setOnRatingBarChangeListener((r,v,b)-> c.updateSet("LOCATION","RATING = "+ v
-                , "LOCATIONID = "+ locationID));
+        ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
+            c.updateSet("LOCATION", "RATING = " + v
+                    , "LOCATIONID = " + locationID);
+            r.setIsIndicator(true);
+        });
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
         // get description for the location on wiki

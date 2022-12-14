@@ -26,30 +26,15 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
-            >
+            />
 
-            <TextView
-                android:id="@+id/loc_name_tv"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-            <TextView
-                android:layout_width="42dp"
-                android:layout_height="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toStartOf="@+id/layout_text_textView">
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <Button
         android:id="@+id/buttonBuy"
         android:layout_width="100dp"

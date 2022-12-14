@@ -11,7 +11,7 @@
     <string name="age">Age</string>
     <string name="location">Location</string>
     <string name="visit">Visit</string>
-
+    <string name="return_tv">Return</string>
     <string name="bottom_home">Home</string>
     <string name="bottom_favorite">Favorite</string>
     <string name="bottom_gift">Gift</string>

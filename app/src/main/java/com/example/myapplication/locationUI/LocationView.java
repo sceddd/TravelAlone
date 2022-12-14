@@ -53,11 +53,6 @@ public class LocationView extends Fragment implements LocationInterface {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     protected void setUpDatabase(){
         ConnSQL c = new ConnSQL();
         try {
