@@ -15,81 +15,81 @@
         tools:context=".locationUI.HomeFragment">
 
 
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Continents"
-            android:textColor="#33691E" />
+<!--        <TextView-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Continents"-->
+<!--            android:textColor="#33691E" />-->
 
-        <HorizontalScrollView
-            android:scrollbarThumbHorizontal="@null"
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foregroundGravity="center">
+<!--        <HorizontalScrollView-->
+<!--            android:scrollbarThumbHorizontal="@null"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:foregroundGravity="center">-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:foregroundGravity="center"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="horizontal">-->
 
-                <Button
-                    android:id="@+id/btn1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All" />
+<!--                <Button-->
+<!--                    android:id="@+id/btn1"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="All" />-->
 
-                <Button
-                    android:id="@+id/btn2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="North" />
+<!--                <Button-->
+<!--                    android:id="@+id/btn2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="North" />-->
 
-                <Button
-                    android:id="@+id/btn3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Central" />
+<!--                <Button-->
+<!--                    android:id="@+id/btn3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Central" />-->
 
-                <Button
-                    android:id="@+id/btn4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="South" />
-                <Button
-                    android:id="@+id/btn5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="South" />
-                <Button
-                    android:id="@+id/btn6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="South" />
-                <Button
-                    android:id="@+id/btn7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="South" />
-            </LinearLayout>
-        </HorizontalScrollView>
+<!--                <Button-->
+<!--                    android:id="@+id/btn4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="South" />-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="South" />-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn6"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="South" />-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn7"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="South" />-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="299dp" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="299dp" />-->
 
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Popular"/>
+<!--        <TextView-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Popular"/>-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
 
     </LinearLayout>
 </ScrollView>
