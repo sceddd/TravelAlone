@@ -4,10 +4,11 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimary">@color/purple_500</item>
     </style>
-    <style name="roundedImageView" parent="">
+
+    <style name="Theme.LocationDetail" parent="Theme.AppCompat.Light.NoActionBar">
 <!--        <item name="android:endColor">@android:color/darker_gray</item>-->
 <!--        <item name="android:startColor">@android:color/darker_gray</item>-->
-        <item name="android:angle">90</item>
+
     </style>
 
 
