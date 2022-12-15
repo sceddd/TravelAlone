@@ -89,18 +89,19 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="10dp"
         android:background="@drawable/button_border"
-
         android:text="Buy ticket"
         android:textColor="@color/white" />
 
     <ImageButton
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/infoView"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_heart" />
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rm_vector_background"
+        android:src="@drawable/ic_baseline_favorite_24" />
 <!--    <com.google.android.material.imageview.ShapeableImageView-->
 <!--        android:id="@+id/imageView"-->
 <!--        android:layout_width="416dp"-->
