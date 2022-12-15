@@ -7,19 +7,10 @@
         android:iconTint="#E1C8C8"
         android:title="Search"
         app:showAsAction="always" />
-<!--    <item-->
-<!--        android:id="@+id/menu_sort"-->
-<!--        android:icon="@drawable/ic_baseline_sort_24"-->
-<!--        android:title="Sort">-->
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:id="@+id/menu_sort_a_to_z"-->
-<!--                android:icon="@drawable/ic_baseline_arrow_drop_up_24"-->
-<!--                android:title="A-Z" />-->
-<!--            <item-->
-<!--                android:id="@+id/menu_sort_z_to_a"-->
-<!--                android:icon="@drawable/ic_baseline_arrow_drop_down_24"-->
-<!--                android:title="Z-A" />-->
-<!--        </menu>-->
-<!--    </item>-->
+    <item
+        android:id="@+id/menu_user"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:iconTint="#E1C8C8"
+        android:title="User"
+        app:showAsAction="ifRoom" />
 </menu>

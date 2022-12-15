@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.bottom_favorite){
                 viewPager2.setCurrentItem(1);
             }
-            if (id == R.id.bottom_gift){
+            if (id == R.id.bottom_location){
                 viewPager2.setCurrentItem(2);
             }
             if (id == R.id.bottom_more){
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavigationView.getMenu().findItem(R.id.bottom_favorite).setChecked(true);
                         break;
                     case 2:
-                        bottomNavigationView.getMenu().findItem(R.id.bottom_gift).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
                         break;
                     case 3:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_more).setChecked(true);
@@ -83,8 +83,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_search){
-            Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+        switch (id){
+            case R.id.menu_search:
+                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_user:
+                Toast.makeText(this, "user", Toast.LENGTH_SHORT).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
