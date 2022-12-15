@@ -43,7 +43,7 @@ public class LocationDetails extends AppCompatActivity {
     private String descript;
     TextView description,locName;
     RatingBar ratingBar;
-    ImageButton imB,ticketPageBtn;
+//    ImageButton imB,ticketPageBtn;
 
 
 
@@ -57,6 +57,48 @@ public class LocationDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.location_details);
         ConnSQL c = new ConnSQL();
+        description = findViewById(R.id.description_text);
+        locName = findViewById(R.id.labeled);
+        ratingBar = findViewById(R.id.ratingBar);
+//        imB = findViewById(R.id.exitBtn);
+//        ticketPageBtn = findViewById(R.id.ticket_page);
+        locationID = getIntent().getIntExtra("LocationID",0);
+        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
+        try {
+            rs.next();
+            locationName = rs.getString("locationName");
+            phoneNumber = rs.getString("phoneNumber");
+            suggestionDate = rs.getString("suggestionDay");
+            rating = rs.getFloat("rating");
+        } catch (SQLException e) {
+            Log.d("ERROR GET VALUE", "onCreate: "+e);
+        }
+        locName.setText(locationName);
+        ratingBar.setRating(rating);
+//        imB.setColorFilter(Color.argb(255, 255, 255, 255));
+//
+//        imB.setOnClickListener(v -> finish());
+        ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
+            c.updateSet("LOCATION", "RATING = " + v
+                    , "LOCATIONID = " + locationID);
+            r.setIsIndicator(true);
+        });
+//        ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
+
+        // get description for the location on wiki
+        StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(strictMode);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://en.wikipedia.org/").addConverterFactory(GsonConverterFactory.create()).build();
+        JsonPlaceHolder jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
+        Call<WikiLoc> call = jsonPlaceHolder.getWiki(locationName);
+        try {
+            descript = Objects.requireNonNull(call.execute().body()).getQuery().getPages().get(0).getExtract();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        description.setText(descript);
+
 //        description = findViewById(R.id.description_text);
 //        locName = findViewById(R.id.labeled);
 //        ratingBar = findViewById(R.id.ratingBar);
@@ -103,6 +145,7 @@ public class LocationDetails extends AppCompatActivity {
         // By PT
         images = new int[]{R.drawable.picture_1, R.drawable.picture_4};
         createViewFlipper(images);
+
     }
 
     public void onClickToBuyTicket(View v){

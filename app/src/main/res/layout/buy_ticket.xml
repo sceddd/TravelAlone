@@ -1,60 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/label"
+    android:layout_height="wrap_content"
+    android:stretchColumns="*">
+    <TableRow
+        android:paddingTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_text"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBuy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_text_textView"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/location_name_bt"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            >
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Label"
+            android:textColor="@color/purple_500"
+            android:textSize="50sp" />
+    </TableRow>
 
-            <TextView
-                android:id="@+id/loc_name_tv"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+    <TableRow
+        android:paddingVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
-            <TextView
-                android:layout_width="42dp"
-                android:layout_height="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <TextView
+            android:id="@+id/user_name_tv"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Full Name"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="40dp"
+            android:id="@+id/user_name_pt"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:textColorHint="#000000"
+            android:hint="Ton Duc Thang"
+            android:inputType="textPersonName"
+            />
+    </TableRow>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow
+        android:paddingVertical="10dp"
 
-    <Button
-        android:id="@+id/buttonBuy"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_text" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/phone_number_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Tel"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10dp"
+
+            android:id="@+id/phone_number_pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColorHint="#000000"
+            android:hint="0855480673"
+            android:inputType="phone" />
+
+    </TableRow>
+
+    <TableRow
+        android:paddingVertical="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/email_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Email"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10dp"
+
+            android:textColorHint="#000000"
+            android:hint="example@email.com"
+            android:layout_weight="2"
+            android:id="@+id/email_address_pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+    </TableRow>
+
+    <TableRow
+        android:paddingVertical="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/age_tv"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Age"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <EditText
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10dp"
+
+            android:textColorHint="#000000"
+            android:hint="21"
+            android:layout_weight="2"
+            android:id="@+id/age_pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </TableRow>
+
+    <TableRow
+        android:paddingVertical="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/visit_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Visit"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_marginStart="10dp"
+
+            android:layout_marginEnd="40dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <NumberPicker
+                android:layout_margin="10dp"
+                android:theme="@style/AppTheme.Picker"
+                android:padding="10dp"
+                android:id="@+id/day_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <NumberPicker
+                android:layout_margin="10dp"
+                android:theme="@style/AppTheme.Picker"
+                android:padding="10dp"
+                android:id="@+id/month_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <NumberPicker
+                android:theme="@style/AppTheme.Picker"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:id="@+id/year_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+    </TableRow>
+    <TableRow
+        android:paddingVertical="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Return"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <NumberPicker
+                android:layout_margin="10dp"
+                android:theme="@style/AppTheme.Picker"
+                android:padding="10dp"
+                android:id="@+id/return_day_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <NumberPicker
+                android:layout_margin="10dp"
+                android:theme="@style/AppTheme.Picker"
+                android:padding="10dp"
+                android:id="@+id/return_month_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+
+            <NumberPicker
+                android:theme="@style/AppTheme.Picker"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:id="@+id/return_year_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+        </LinearLayout>
+
+    </TableRow>
+
+
+    <TableRow
+        android:paddingVertical="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:clickable="false"
+            android:visibility="invisible"
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:textColor="@color/purple_500"
+            android:id="@+id/buy_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/yellow"
+            android:text="Buy"
+            android:textSize="20sp" />
+
+        <Button
+            android:backgroundTint="@color/yellow"
+            android:clickable="false"
+            android:visibility="invisible"
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </TableRow>
+
+
+</TableLayout>

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDark"
     tools:context=".locationUI.LocationDetails" >
 
     <ViewFlipper
         android:id="@+id/flipView"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,14 +25,23 @@
             />
     </ViewFlipper>
 
+=======
+        android:layout_height="match_parent" />
+>>>>>>> ed368e5613ccb0940806cdcc64edc9e9f41dbea3
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="25dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#66000000">
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_view"
+        android:layout_marginBottom="80dp"
+        android:id="@+id/infoView">
 
         <TextView
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="10dp"
             android:id="@+id/labeled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,6 +53,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RatingBar
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
             android:id="@+id/ratingBar"
             style="@android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
@@ -60,6 +72,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,6 +86,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labeled" />
 
+<<<<<<< HEAD
         <ImageButton
             android:id="@+id/ticket_page"
             android:layout_width="315dp"
@@ -94,11 +109,42 @@
 <!--            android:src="@drawable/test"-->
 <!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent" />-->
+=======
+        <!--        <androidx.appcompat.widget.AppCompatImageButton-->
+        <!--            android:id="@+id/exitBtn"-->
+        <!--            android:layout_width="42dp"-->
+        <!--            android:layout_height="42dp"-->
+        <!--            android:layout_marginTop="4dp"-->
+        <!--            android:layout_marginEnd="4dp"-->
+        <!--            android:background="@null"-->
+        <!--            android:backgroundTint="@color/white"-->
+        <!--            android:src="@drawable/test"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+>>>>>>> ed368e5613ccb0940806cdcc64edc9e9f41dbea3
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <Button
+        android:id="@+id/ticket_page"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_border"
+        android:text="Buy ticket"
+        android:textColor="@color/white" />
 
+    <ImageButton
 
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/infoView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rm_vector_background"
+        android:src="@drawable/ic_baseline_favorite_24" />
 <!--    <com.google.android.material.imageview.ShapeableImageView-->
 <!--        android:id="@+id/imageView"-->
 <!--        android:layout_width="416dp"-->

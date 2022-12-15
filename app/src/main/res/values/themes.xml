@@ -4,12 +4,20 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimary">@color/purple_500</item>
     </style>
-    <style name="roundedImageView" parent="">
+
+    <style name="Theme.LocationDetail" parent="Theme.AppCompat.Light.NoActionBar">
 <!--        <item name="android:endColor">@android:color/darker_gray</item>-->
 <!--        <item name="android:startColor">@android:color/darker_gray</item>-->
-        <item name="android:angle">90</item>
     </style>
+<<<<<<< HEAD
         <style name="buttonStyle" parent="android:style/Theme.NoTitleBar">
             <item name="android:buttonStyle">@style/button</item>
         </style>
+=======
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+>>>>>>> ed368e5613ccb0940806cdcc64edc9e9f41dbea3
 </resources>

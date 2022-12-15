@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +35,8 @@ public class BuyTicketPage extends AppCompatActivity {
     Button buy_ticket;
     EditText email_address_pt,username,phoneNumber;
     int locationID;
-    NumberPicker day_pick,year_pick,month_pick;
+    NumberPicker day_pick,year_pick,month_pick,
+            return_day_pick,return_month_pick,return_year_pick;
     TextView locationName;
     ConnSQL c = new ConnSQL();
     @SuppressLint("QueryPermissionsNeeded")
@@ -50,6 +52,9 @@ public class BuyTicketPage extends AppCompatActivity {
         day_pick = findViewById(R.id.day_picker);
         month_pick = findViewById(R.id.month_picker);
         year_pick = findViewById(R.id.year_picker);
+        return_day_pick = findViewById(R.id.return_day_picker);
+        return_month_pick = findViewById(R.id.return_month_picker);
+        return_year_pick = findViewById(R.id.return_year_picker);
         locationName = findViewById(R.id.location_name_bt);
 
         // set send Email for the user the information of the ticket
@@ -59,24 +64,29 @@ public class BuyTicketPage extends AppCompatActivity {
 
         year_pick.setMinValue(LocalDate.now().getYear());
         year_pick.setMaxValue(LocalDate.now().getYear()+10);
+        return_year_pick.setMinValue(LocalDate.now().getYear());
+        return_year_pick.setMaxValue(LocalDate.now().getYear()+10);
 
         month_pick.setMinValue(1);
         month_pick.setMaxValue(12);
+        return_month_pick.setMinValue(1);
+        return_month_pick.setMaxValue(12);
 
         day_pick.setMinValue(1);
         day_pick.setMaxValue(YearMonth.of(year_pick.getValue(),month_pick.getValue()).lengthOfMonth());
+        return_day_pick.setMinValue(1);
 
+        return_day_pick.setMaxValue(YearMonth.of(return_year_pick.getValue(),return_month_pick.getValue()).lengthOfMonth());
         resetBaseDateVariable();
-
-        year_pick.setOnValueChangedListener((picker,oldVal,newVal)-> settingBaseDateVariable());
+        day_pick.setOnValueChangedListener((p,o,n)-> resetBaseReturnDateVariable());
         month_pick.setOnValueChangedListener((picker, oldVal, newVal) -> {
-                    settingBaseDateVariable();
-            day_pick.setMaxValue(YearMonth.of(year_pick.getValue(),month_pick.getValue()).lengthOfMonth());
-                }
+                day_pick.setMaxValue(YearMonth.of(year_pick.getValue(),month_pick.getValue()).lengthOfMonth());
+                return_month_pick.setValue(month_pick.getValue());
+            }
         );
-        day_pick.setOnValueChangedListener((picker, oldVal, newVal)-> {
-            settingBaseDateVariable();
-        });
+
+
+
     }
     @SuppressLint("UnspecifiedImmutableFlag")
     public void onBuyClick(View v){
@@ -98,6 +108,12 @@ public class BuyTicketPage extends AppCompatActivity {
         String historyQue = "insert into HistoryBook (userID,locationID,visitDay,returnDay) values ('"+userID+"','"+locationID+"','2002/12/01','2002/12/02')";
         c.executeQ(historyQue);
         //  send notification message to user when the day come
+        if (LocalDate.now().compareTo(LocalDate.of(year_pick.getValue(),month_pick.getValue(),day_pick.getValue()))>0) {
+            resetBaseReturnDateVariable();
+            resetBaseDateVariable();
+            Toast.makeText(this, "invalid Date", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         Intent goneDay = new Intent(BuyTicketPage.this, LeaveNotification.class);
         PendingIntent goneDayNotiIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,goneDay,0);
         // send notification message to user when day return from the trip
@@ -106,14 +122,17 @@ public class BuyTicketPage extends AppCompatActivity {
         returnDay.putExtra("locationID", locationID);
         PendingIntent returnDayNotiIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,returnDay,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long timeAtButtonClick = System.currentTimeMillis();
-        alarmManager.set(AlarmManager.RTC_WAKEUP,timeAtButtonClick + getTimeUserReturn(),goneDayNotiIntent);
+        long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;//getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
+        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 10;;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
+        alarmManager.set(AlarmManager.RTC_WAKEUP,timeToLaunchGoNotification,goneDayNotiIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, 
-                timeAtButtonClick + getTimeUserReturn(),returnDayNotiIntent);
+                timeToLaunchReturnNotification,returnDayNotiIntent);
 
     }
-    private long getTimeUserReturn(){
-        return 1000 * 10;
+    private long getTime(int year,int month,int day){
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month-1,day);
+        return cal.getTimeInMillis();
     }
 
     private void createNotificationChannel(){       // setting up notification channel to let user setting their notification
@@ -122,24 +141,30 @@ public class BuyTicketPage extends AppCompatActivity {
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel("onTripReturn", name, importance);
         channel.setDescription(description);
-
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(channel);
     }
 
-    private void settingDateTime(){
 
+
+
+
+    private void resetBaseReturnDateVariable() {
+
+        return_day_pick.setValue(day_pick.getValue()+1);
+        int return_month = day_pick.getValue()+1>day_pick.getMaxValue()?month_pick.getValue()+1:month_pick.getValue();
+        int return_year = month_pick.getValue()+1>month_pick.getMaxValue()?year_pick.getValue()+1:year_pick.getValue();
+        return_month_pick.setValue(return_month);
+        return_year_pick.setValue(return_year);
     }
-    private void settingBaseDateVariable(){
-        if (LocalDate.now().compareTo(LocalDate.of(year_pick.getValue(),month_pick.getValue(),day_pick.getValue()))>0)
-            resetBaseDateVariable();
-    }
+
     private void resetBaseDateVariable(){
         day_pick.setValue(LocalDate.now().getDayOfMonth());
         month_pick.setValue(LocalDate.now().getMonthValue());
         year_pick.setValue(LocalDate.now().getYear());
-
+        resetBaseReturnDateVariable();
     }
+
 }
 
 
