@@ -145,10 +145,6 @@ public class BuyTicketPage extends AppCompatActivity {
         notificationManager.createNotificationChannel(channel);
     }
 
-
-
-
-
     private void resetBaseReturnDateVariable() {
 
         return_day_pick.setValue(day_pick.getValue()+1);
