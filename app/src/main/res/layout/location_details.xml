@@ -9,7 +9,25 @@
     <ViewFlipper
         android:id="@+id/flipView"
         android:layout_width="match_parent"
+<<<<<<< HEAD
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/star"
+            android:padding="5dp"
+            android:paddingRight="5dp"
+            />
+    </ViewFlipper>
+
+=======
         android:layout_height="match_parent" />
+>>>>>>> ed368e5613ccb0940806cdcc64edc9e9f41dbea3
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_marginHorizontal="25dp"
@@ -68,6 +86,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labeled" />
 
+<<<<<<< HEAD
+        <ImageButton
+            android:id="@+id/ticket_page"
+            android:layout_width="315dp"
+            android:layout_height="77dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/btnbuy"
+            android:padding="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!--        <androidx.appcompat.widget.AppCompatImageButton-->
+<!--            android:id="@+id/exitBtn"-->
+<!--            android:layout_width="42dp"-->
+<!--            android:layout_height="42dp"-->
+<!--            android:layout_marginTop="4dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:background="@null"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:src="@drawable/test"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+=======
         <!--        <androidx.appcompat.widget.AppCompatImageButton-->
         <!--            android:id="@+id/exitBtn"-->
         <!--            android:layout_width="42dp"-->
@@ -79,6 +121,7 @@
         <!--            android:src="@drawable/test"-->
         <!--            app:layout_constraintEnd_toEndOf="parent"-->
         <!--            app:layout_constraintTop_toTopOf="parent" />-->
+>>>>>>> ed368e5613ccb0940806cdcc64edc9e9f41dbea3
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
