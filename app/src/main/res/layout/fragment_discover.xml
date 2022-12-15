@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    tools:context=".locationUI.DiscoverFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/yellow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".locationUI.DiscoverFragment"
-    android:background="@color/teal_200">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/bottom_gift"
+    android:fillViewport="true">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Gift" />
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_discover"
+            app:tabPadding="5dp"
+            app:tabTextColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabSelectedTextColor="@color/purple_500"
+            >
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/northeast"
+                android:text="Northeast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/northwest"
+                android:text="Northwest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/southeast"
+                android:text="Southeast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/north_central"
+                android:text="North Central"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/south_central"
+                android:text="South Central"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/southwest"
+                android:text="Southwest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/mekong_delta_river"
+                android:text="Mekong Delta River"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.tabs.TabLayout>
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_discover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</ScrollView>
