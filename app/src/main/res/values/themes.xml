@@ -8,7 +8,15 @@
     <style name="Theme.LocationDetail" parent="Theme.AppCompat.Light.NoActionBar">
 <!--        <item name="android:endColor">@android:color/darker_gray</item>-->
 <!--        <item name="android:startColor">@android:color/darker_gray</item>-->
+    </style>
 
+        <style name="buttonStyle" parent="android:style/Theme.NoTitleBar">
+            <item name="android:buttonStyle">@style/button</item>
+        </style>
+
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
 

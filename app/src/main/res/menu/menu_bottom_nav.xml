@@ -6,10 +6,10 @@
     <item android:id="@+id/bottom_favorite"
         android:title="@string/bottom_favorite"
         android:icon="@drawable/ic_baseline_favorite_24"/>
-    <item android:id="@+id/bottom_gift"
-        android:title="@string/bottom_more"
-        android:icon="@drawable/ic_baseline_card_giftcard_24"/>
+    <item android:id="@+id/bottom_location"
+        android:title="Discorver"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
     <item android:id="@+id/bottom_more"
-        android:title="@string/bottom_more"
+        android:title="Us"
         android:icon="@drawable/ic_baseline_more_horiz_24"/>
 </menu>

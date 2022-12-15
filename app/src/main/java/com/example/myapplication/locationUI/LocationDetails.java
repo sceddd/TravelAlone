@@ -185,7 +185,7 @@ public class LocationDetails extends AppCompatActivity {
         viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
         viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
 
-        viewFlipper.setFlipInterval(4000); // 4ms
+        viewFlipper.setFlipInterval(8000); // 4ms
         viewFlipper.setAutoStart(true);
         viewFlipper.startFlipping();
     }
