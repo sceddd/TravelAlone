@@ -24,6 +24,8 @@ public class WebPage extends AppCompatActivity {
         webView.loadUrl(link);
     }
 
+
+
     @Override
     public void onBackPressed() {
         if (webView.canGoBack()){
