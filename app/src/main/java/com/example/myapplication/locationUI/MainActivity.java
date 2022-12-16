@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
+
     }
 
     @Override
@@ -85,10 +87,24 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.menu_search:
-                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+                SearchView searchView = (SearchView) item.getActionView();
+                searchView.setQueryHint("Type here to search");
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return false;
+                    }
+                });
                 break;
+
             case R.id.menu_user:
-                Toast.makeText(this, "user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "user setting", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

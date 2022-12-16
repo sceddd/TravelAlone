@@ -43,7 +43,7 @@ public class BuyTicketPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buy_ticket_page);
+        setContentView(R.layout.buy_ticket);
         createNotificationChannel();
         username = findViewById(R.id.user_name_pt);
         phoneNumber = findViewById(R.id.phone_number_pt);

@@ -2,10 +2,11 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".locationUI.BuyTicketPage"
     android:stretchColumns="*">
+
     <TableRow
         android:paddingTop="10dp"
         android:layout_width="match_parent"
@@ -30,7 +31,6 @@
 
         <TextView
             android:id="@+id/user_name_tv"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -39,6 +39,8 @@
             android:textSize="20sp" />
 
         <EditText
+            android:textColor="@color/black"
+
             android:layout_marginStart="10dp"
             android:layout_marginEnd="40dp"
             android:id="@+id/user_name_pt"
@@ -46,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:ems="10"
-            android:textColorHint="#000000"
+            android:textColorHint="#66000000"
             android:hint="Ton Duc Thang"
             android:inputType="textPersonName"
             />
@@ -70,12 +72,13 @@
         <EditText
             android:layout_marginEnd="40dp"
             android:layout_marginStart="10dp"
+            android:textColor="@color/black"
 
             android:id="@+id/phone_number_pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:textColorHint="#000000"
+            android:textColorHint="#66000000"
             android:hint="0855480673"
             android:inputType="phone" />
 
@@ -99,8 +102,9 @@
         <EditText
             android:layout_marginEnd="40dp"
             android:layout_marginStart="10dp"
+            android:textColor="@color/black"
 
-            android:textColorHint="#000000"
+            android:textColorHint="#66000000"
             android:hint="example@email.com"
             android:layout_weight="2"
             android:id="@+id/email_address_pt"
@@ -129,8 +133,8 @@
         <EditText
             android:layout_marginEnd="40dp"
             android:layout_marginStart="10dp"
-
-            android:textColorHint="#000000"
+android:textColor="@color/black"
+            android:textColorHint="#66000000"
             android:hint="21"
             android:layout_weight="2"
             android:id="@+id/age_pt"
@@ -158,9 +162,8 @@
         <LinearLayout
             android:layout_marginStart="10dp"
 
-            android:layout_marginEnd="40dp"
             android:layout_weight="2"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -205,9 +208,8 @@
             android:textSize="20sp" />
 
         <LinearLayout
-            android:layout_marginEnd="40dp"
-            android:layout_marginStart="10dp"
 
+            android:layout_marginStart="10dp"
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -244,7 +246,7 @@
     <TableRow
         android:paddingVertical="10dp"
         android:paddingTop="10dp"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:clickable="false"
@@ -256,21 +258,22 @@
         <Button
             android:textColor="@color/purple_500"
             android:id="@+id/buy_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@color/yellow"
             android:text="Buy"
             android:textSize="20sp" />
 
         <Button
-            android:backgroundTint="@color/yellow"
+
             android:clickable="false"
             android:visibility="invisible"
             android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </TableRow>
+    </TableLayout>
 
 
-</TableLayout>
+
