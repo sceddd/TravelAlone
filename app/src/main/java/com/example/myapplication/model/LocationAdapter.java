@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,9 +48,11 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView locName;
+        ImageView imageView;
         public MyViewHolder(@NonNull View itemView, LocationInterface locationInterface) {
             super(itemView);
             locName = itemView.findViewById(R.id.location_name);
+            imageView = itemView.findViewById(R.id.loc_image);
             itemView.setOnClickListener(v->{
                 if(locationInterface!= null){
                     int pos = getAdapterPosition();

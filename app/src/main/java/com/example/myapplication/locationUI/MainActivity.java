@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.menu_search:
-//                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
                 SearchView searchView = (SearchView) item.getActionView();
                 searchView.setQueryHint("Type here to search");
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -102,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 break;
-
             case R.id.menu_user:
                 Toast.makeText(this, "user setting", Toast.LENGTH_SHORT).show();
                 break;

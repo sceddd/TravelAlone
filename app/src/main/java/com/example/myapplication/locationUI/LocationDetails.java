@@ -65,11 +65,11 @@ public class LocationDetails extends AppCompatActivity {
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
         locationID = getIntent().getIntExtra("LocationID",0);
-        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
+        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
             rs.next();
-            locationName = rs.getString("locationName");
-            rating = rs.getFloat("rating");
+            locationName = rs.getString("Name");
+            rating = rs.getFloat("Rating");
             pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
         } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
@@ -82,7 +82,7 @@ public class LocationDetails extends AppCompatActivity {
         imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v
-                    , "LOCATIONID = " + locationID);
+                    , "City_ID = " + locationID);
             r.setIsIndicator(true);
         });
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);

@@ -55,7 +55,7 @@ public class LocationView extends Fragment implements LocationInterface {
         try {
             ResultSet rs = c.getFullSet("LOCATION");
             while (rs.next()){
-                Location location = new Location(rs.getInt("locationID"),rs.getString("locationName"),rs.getFloat("rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")));
+                Location location = new Location(rs.getInt("City_ID"),rs.getString("Name"),rs.getFloat("Rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")),rs.getString("Region"));
                 locations.add(location);
             }
         }
@@ -76,7 +76,6 @@ public class LocationView extends Fragment implements LocationInterface {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
                     if (intent!=null) {
-
                     }
                 }
             });
