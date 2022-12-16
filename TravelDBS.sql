@@ -10,7 +10,7 @@ CREATE TABLE [Users] (
   [email] nvarchar(50),
 )
 GO
-CREATE TABLE Location(City_ID int primary key,Name NVARCHAR(50),Region NVARCHAR(50),Longtitude FLOAT, Latitude FLOAT,Rating FLOAT);
+CREATE TABLE Location(City_ID int primary key,Name NVARCHAR(50),Region NVARCHAR(50),Longtitude FLOAT, Latitude FLOAT,Rating FLOAT, isLiked bit default 0);
 GO
 CREATE TABLE [HistoryBook](
 	[histoID] int IDENTITY(1,1) Primary Key,

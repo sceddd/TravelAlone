@@ -65,7 +65,7 @@ public class MoreFragment extends Fragment {
                 break;
 
             case R.id.tv_report:
-                accessTo("https://docs.google.com/document/d/1jR_GFyIzwAfttfcxkXzjV44zWsEilJe9/edit");
+                accessTo("https://docs.google.com/document/d/1nkfsMfp27PM5c54Js6EOweqLytEI7Kkb/edit");
                 break;
         }
     }
