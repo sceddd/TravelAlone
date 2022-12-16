@@ -49,12 +49,12 @@ public class LocationView extends Fragment implements LocationInterface {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.rv_discover);
         tabs = view.findViewById(R.id.tl_discover);
-        locations = setUpDatabase("NorthEast");
+        locations = setUpDatabase("All");
         locationAdapter = new LocationAdapter(getContext(),locations,this);
         recyclerView.setAdapter(locationAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        ArrayList<String> region = new ArrayList<>(Arrays.asList("NorthEast","Southwest", "SouthEast","North Central","South Central","SouthWest","Mekong Delta River"));
+        ArrayList<String> region = new ArrayList<>(Arrays.asList("All","NorthEast","Southwest", "SouthEast","North Central","South Central","SouthWest","Mekong Delta River"));
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
@@ -82,7 +82,13 @@ public class LocationView extends Fragment implements LocationInterface {
         ConnSQL c = new ConnSQL();
         ArrayList<Location> loc = new ArrayList<>();
         try {
-            ResultSet rs = c.getSetWithoutEle("LOCATION","*","REGION = '"+region+"'");
+            ResultSet rs;
+            if (region.equals("All")){
+                rs = c.getFullSet("LOCATION");
+            }
+            else {
+                rs =c.getSetWithoutEle("LOCATION", "*", "REGION = '"+region+"'");
+            }
             Log.d("111111", "setUpDatabase: "+rs);
             while (rs.next()){
                 Location location = new Location(rs.getInt("City_ID"),rs.getString("Name"),rs.getFloat("Rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")),rs.getString("Region"));
