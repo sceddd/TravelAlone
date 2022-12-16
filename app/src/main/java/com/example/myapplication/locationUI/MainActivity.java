@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.MyViewPageAdapter;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        customActionBar();
+
         setContentView(R.layout.activity_main);
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -99,5 +103,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    public void customActionBar(){
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setIcon(R.drawable.logo);
     }
 }
