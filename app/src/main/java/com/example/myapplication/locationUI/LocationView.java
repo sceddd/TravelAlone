@@ -95,8 +95,9 @@ public class LocationView extends Fragment implements LocationInterface {
     protected void onTextFind(String text){
         ConnSQL c = new ConnSQL();
         ArrayList<Location> locs = new ArrayList<>();
+        Log.d("11111", "onTextFind: "+text);
         try {
-            ResultSet rs = c.executeQ("SELECT * " + "from Location" + " where lower(Name) like '"+text+"'");
+            ResultSet rs = c.executeQ("SELECT * " + "from Location" + " where lower(Name) like '%"+text+"%'");
             while (rs.next()) {
                 Location location = new Location(rs.getInt("City_ID"),rs.getString("Name"),rs.getFloat("Rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")),rs.getString("Region"));
                 locs.add(location);
@@ -105,6 +106,9 @@ public class LocationView extends Fragment implements LocationInterface {
             Log.d("error", "onTextFind "+e);
         }
         locations.clear();
+        if (locs.size()==0){
+            return;
+        }
         locations.addAll(locs);
         locationAdapter.notifyDataSetChanged();
     }

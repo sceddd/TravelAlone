@@ -52,7 +52,6 @@ public class LocationDetails extends AppCompatActivity {
     ArrayList<Bitmap> bitmaps= new ArrayList<>();
     LocationCities locationCities;
     ViewFlipper viewFlipper;
-    boolean favor;
     LatLng pos;
 
 

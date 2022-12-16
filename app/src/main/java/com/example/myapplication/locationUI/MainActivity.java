@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+
         myViewPageAdapter = new MyViewPageAdapter(this);
         viewPager2.setAdapter(myViewPageAdapter);
 
@@ -95,15 +96,16 @@ public class MainActivity extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to search");
-        searchView.setOnClickListener(v-> {
+        searchView.setOnSearchClickListener(v-> {
             viewPager2.setCurrentItem(1);
+            Log.d("111111111111111111", "onCreateOptionsMenu: ");
             bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Fragment frag1 = myViewPageAdapter.getFragment();
-                ((LocationView)frag1).onTextFind(query);
+                LocationView frag = myViewPageAdapter.getFragment();
+                frag.onTextFind(query);
                 return false;
             }
 
