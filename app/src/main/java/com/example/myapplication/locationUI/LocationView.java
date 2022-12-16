@@ -38,7 +38,9 @@ public class LocationView extends Fragment implements LocationInterface {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.recycler_view_location,container,false);
     }
-
+    public ArrayList<Location> getLocations(){
+        return locations;
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
