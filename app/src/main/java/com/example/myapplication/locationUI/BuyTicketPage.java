@@ -83,9 +83,6 @@ public class BuyTicketPage extends AppCompatActivity {
                 return_month_pick.setValue(month_pick.getValue());
             }
         );
-
-
-
     }
     @SuppressLint("UnspecifiedImmutableFlag")
     public void onBuyClick(View v){
@@ -125,14 +122,13 @@ public class BuyTicketPage extends AppCompatActivity {
         returnDay.putExtra("locationID", locationID);
         PendingIntent returnDayNotiIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,returnDay,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;// 10 secs //getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
-        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 10;//20 secs ;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
-        alarmManager.set(AlarmManager.RTC_WAKEUP,timeToLaunchGoNotification,goneDayNotiIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, 
+        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 10;//10 secs (set 10 secs for fast check);//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
                 timeToLaunchReturnNotification,returnDayNotiIntent);
-
+//        long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;// 10 secs  //getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
+//        alarmManager.set(AlarmManager.RTC_WAKEUP,timeToLaunchGoNotification,goneDayNotiIntent);
     }
-    private long getTime(int year,int month,int day){
+    private long getTime(int year,int month,int day){ // this function to get Time in buy TicketPage for pop up notification
         Calendar cal = Calendar.getInstance();
         cal.set(year, month-1,day);
         return cal.getTimeInMillis();
@@ -150,7 +146,6 @@ public class BuyTicketPage extends AppCompatActivity {
         notificationManager.createNotificationChannel(returnChannel);
     }
     private void resetBaseReturnDateVariable() {
-
         return_day_pick.setValue(day_pick.getValue()+1);
         int return_month = day_pick.getValue()+1>day_pick.getMaxValue()?month_pick.getValue()+1:month_pick.getValue();
         int return_year = month_pick.getValue()+1>month_pick.getMaxValue()?year_pick.getValue()+1:year_pick.getValue();
@@ -168,19 +163,13 @@ public class BuyTicketPage extends AppCompatActivity {
 }
 
 
-
-
-
-
-
-
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://en.wikipedia.org/")
 //                .addConverterFactory(ScalarsConverterFactory.create())
 //                // add other factories here, if needed.
 //                .build();
 //        LocationCities locationCities = retrofit.create(LocationCities.class);
-//    public void sendMail(){
+//    public void sendMail(){           // send Email func but google turn off send email for test account
 //        final String email_address = "testaccfbp@gmail.com";
 //        final String password = "021002ht";
 //        final String body = "Your ticket is abcxyz";

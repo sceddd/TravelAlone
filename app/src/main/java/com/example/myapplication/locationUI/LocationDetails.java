@@ -118,15 +118,8 @@ public class LocationDetails extends AppCompatActivity {
         Intent intent = new Intent(LocationDetails.this, BuyTicketPage.class);
         intent.putExtra("LOCATION", locationName);
         intent.putExtra("LocationID",locationID);
-        ticketPageLaunch.launch(intent);
+        startActivity(intent);
     }
-    ActivityResultLauncher<Intent> ticketPageLaunch = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent intent = result.getData();
-                }
-            });
 
     public void createViewFlipper(){
         String exception = "Hà Nội Hồ Chí Minh",title= locationName.replace(" ", "_");
@@ -184,7 +177,5 @@ public class LocationDetails extends AppCompatActivity {
         return bitmaps;
     }
 
-    public void onOpenMap(View view) {
 
-    }
 }

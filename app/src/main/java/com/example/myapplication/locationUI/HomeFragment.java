@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment implements LocationInterface {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.d("1111", "onTabSelected: "+tab.getPosition());
                 switch(tab.getPosition()){
                     case 0:
                         loc.clear();
@@ -75,7 +74,6 @@ public class HomeFragment extends Fragment implements LocationInterface {
                         locAdap.notifyDataSetChanged();
                         break;
                 }
-                Log.d("11111111", "onTabSelected: "+loc);
             }
 
             @Override
