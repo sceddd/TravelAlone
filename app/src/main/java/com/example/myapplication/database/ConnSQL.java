@@ -28,6 +28,7 @@ public class ConnSQL {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connectionURL = databaseInf.getDb();
             conn = DriverManager.getConnection(connectionURL);
+            Log.d("ERROR LOGIN DATABASE", "getConnection: ");
         }catch(Exception e) {
             Log.e("ERROR LOGIN DATABASE", ""+e);
         }

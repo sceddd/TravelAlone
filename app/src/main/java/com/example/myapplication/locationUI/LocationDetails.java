@@ -2,13 +2,13 @@ package com.example.myapplication.locationUI;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -22,34 +22,35 @@ import android.widget.ViewFlipper;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
-import com.example.myapplication.jsonplaceholder.JsonPlaceHolder;
-import com.example.myapplication.model.WikiLoc.WikiLoc;
+import com.example.myapplication.jsonplaceholder.LocationCities;
+import com.google.android.gms.maps.model.LatLng;
 //import com.example.myapplication.model.WikiLoc;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LocationDetails extends AppCompatActivity {
-    private String locationName,phoneNumber,suggestionDate;
+    private String locationName;
     private int locationID;
     private float rating;
-    private String descript;
     TextView description,locName;
     RatingBar ratingBar;
     ImageButton imB;
     Button ticketPageBtn;
-
-
+    ArrayList<Bitmap> bitmaps= new ArrayList<>();
+    LocationCities locationCities;
     ViewFlipper viewFlipper;
-    int[] images;
+    LatLng pos;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -68,13 +69,14 @@ public class LocationDetails extends AppCompatActivity {
         try {
             rs.next();
             locationName = rs.getString("locationName");
-            phoneNumber = rs.getString("phoneNumber");
-            suggestionDate = rs.getString("suggestionDay");
             rating = rs.getFloat("rating");
+            pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
         } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
         locName.setText(locationName);
+
+
         ratingBar.setRating(rating);
 
         imB.setOnClickListener(v -> finish());
@@ -88,64 +90,13 @@ public class LocationDetails extends AppCompatActivity {
         // get description for the location on wiki
         StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(strictMode);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://en.wikipedia.org/").addConverterFactory(GsonConverterFactory.create()).build();
-        JsonPlaceHolder jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
-        Call<WikiLoc> call = jsonPlaceHolder.getWiki(locationName);
-        try {
-            descript = Objects.requireNonNull(call.execute().body()).getQuery().getPages().get(0).getExtract();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        description.setText(descript);
-
-//        description = findViewById(R.id.description_text);
-//        locName = findViewById(R.id.labeled);
-//        ratingBar = findViewById(R.id.ratingBar);
-//        imB = findViewById(R.id.exitBtn);
-//        ticketPageBtn = findViewById(R.id.ticket_page);
-//        locationID = getIntent().getIntExtra("LocationID",0);
-//        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
-//        Log.d("1111", "onCreate: "+"SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"')");
-//        try {
-//            rs.next();
-//            locationName = rs.getString("locationName");
-//            phoneNumber = rs.getString("phoneNumber");
-//            suggestionDate = rs.getString("suggestionDay");
-//            rating = rs.getFloat("rating");
-//        } catch (SQLException e) {
-//            Log.d("ERROR GET VALUE", "onCreate: "+e);
-//        }
-//
-//
-//        locName.setText(locationName);
-//        ratingBar.setRating(rating);
-//        imB.setColorFilter(Color.argb(255, 255, 255, 255));
-//
-//        imB.setOnClickListener(v -> finish());
-//        ratingBar.setOnRatingBarChangeListener((r,v,b)-> c.updateSet("LOCATION","RATING = "+ v
-//                , "LOCATIONID = "+ locationID));
-
-//
-//        // get description for the location on wiki
-//        StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(strictMode);
-//        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://en.wikipedia.org/").addConverterFactory(GsonConverterFactory.create()).build();
-//        JsonPlaceHolder jsonPlaceHolder = retrofit.create(JsonPlaceHolder.class);
-//        Call<WikiLoc> call = jsonPlaceHolder.getWiki(locationName);
-//        try {
-//            descript = Objects.requireNonNull(call.execute().body()).getQuery().getPages().get(0).getExtract();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        description.setText(descript);
-
-
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://en.wikipedia.org/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        locationCities = retrofit.create(LocationCities.class);
         // By PT
-        images = new int[]{R.drawable.picture_1, R.drawable.picture_4};
-        createViewFlipper(images);
-
+        createViewFlipper();
     }
 
     public void onClickToBuyTicket(View v){
@@ -162,25 +113,17 @@ public class LocationDetails extends AppCompatActivity {
                 }
             });
 
-    public void createViewFlipper(int[] images){
-//        int[] images = {R.drawable.picture_1, R.drawable.picture_4};
-
+    public void createViewFlipper(){
+        String title = locationName.replace(" ","_").concat("_province");
+        ArrayList<Bitmap> bitmap = getImageAndDesApi(title);
         viewFlipper = findViewById(R.id.flipView);
-
-        for (int image:images){
-//            flipperImage(image);
+        for (Bitmap i:bitmap){
             ImageView imageView = new ImageView(this);
-            imageView.setBackgroundResource(image);
+            imageView.setImageBitmap(i);
             viewFlipper.addView(imageView);
         }
 
-        viewFlipper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewFlipper.showPrevious();
-            }
-        });
-
+        viewFlipper.setOnClickListener(view -> viewFlipper.showPrevious());
 
         viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
         viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
@@ -188,5 +131,31 @@ public class LocationDetails extends AppCompatActivity {
         viewFlipper.setFlipInterval(8000); // 4ms
         viewFlipper.setAutoStart(true);
         viewFlipper.startFlipping();
+    }
+    public ArrayList<Bitmap> getImageAndDesApi(String locationS){
+        StrictMode.ThreadPolicy policy = new
+                StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Call<String> call = locationCities.getWiki(locationS);
+        Call<String> locApiReq = locationCities.returnListPic(locationS);
+        try {
+            JSONObject json = new JSONObject(Objects.requireNonNull(call.execute().body()));
+            String des = json.getJSONObject("query").getJSONArray("pages").getJSONObject(0).getString("extract");
+            description.setText(des);
+            JSONObject ob = new JSONObject(Objects.requireNonNull(locApiReq.execute().body()));
+            for (int i=0;i<4;i++){
+                String imageName = ob.getJSONObject("query").getJSONArray("pages").getJSONObject(0).getJSONArray("images").getJSONObject(i).getString("title");
+                if (imageName.equals("File:Commons-logo.svg"))
+                    continue;
+                Call<String> imageCallRequest = locationCities.returnPic(imageName);
+                JSONObject o = new JSONObject(Objects.requireNonNull(imageCallRequest.execute().body()));
+                String imageUrl = o.getJSONObject("query").getJSONArray("pages").getJSONObject(0).getJSONArray("imageinfo").getJSONObject(0).getString("url");
+                URL url = new URL(imageUrl);
+                bitmaps.add(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+            }
+        }catch (Exception e){
+            Log.d("111111111111", "onCreate: "+e);
+        }
+        return bitmaps;
     }
 }

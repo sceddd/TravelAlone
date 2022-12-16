@@ -17,6 +17,6 @@ public class LeaveNotification extends BroadcastReceiver {
                 .setContentTitle("Have you backpacked your trip??")
                 .setContentText("Let's go!!!");
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
-        managerCompat.notify(201, notification.build());
+        managerCompat.notify(200, notification.build());
     }
 }

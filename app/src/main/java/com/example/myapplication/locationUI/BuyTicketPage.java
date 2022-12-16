@@ -122,8 +122,8 @@ public class BuyTicketPage extends AppCompatActivity {
         returnDay.putExtra("locationID", locationID);
         PendingIntent returnDayNotiIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,returnDay,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;//getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
-        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 10;;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
+        long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;// 10 secs //getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
+        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 20;//20 secs ;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeToLaunchGoNotification,goneDayNotiIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, 
                 timeToLaunchReturnNotification,returnDayNotiIntent);
@@ -136,15 +136,19 @@ public class BuyTicketPage extends AppCompatActivity {
     }
 
     private void createNotificationChannel(){       // setting up notification channel to let user setting their notification
-        CharSequence name = "RatingApp";
+        CharSequence returnSeq = "RatingApp", leaveSeq = "Remind";
         String description = "Channel for user";
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel("onTripReturn", name, importance);
-        channel.setDescription(description);
+        NotificationChannel returnChannel = new NotificationChannel("onTripReturn", returnSeq, importance);
+        NotificationChannel leaveChannel = new NotificationChannel("onTripLeave", leaveSeq, importance);
+        returnChannel.setDescription(description);
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
+        notificationManager.createNotificationChannel(leaveChannel);
+        notificationManager.createNotificationChannel(returnChannel);
     }
+    private void onTripGo(){
 
+    }
     private void resetBaseReturnDateVariable() {
 
         return_day_pick.setValue(day_pick.getValue()+1);
