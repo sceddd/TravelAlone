@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         searchView.setQueryHint("Type here to search");
         searchView.setOnSearchClickListener(v-> {
             viewPager2.setCurrentItem(1);
-            Log.d("111111111111111111", "onCreateOptionsMenu: ");
             bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

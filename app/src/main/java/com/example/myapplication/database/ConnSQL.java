@@ -68,6 +68,7 @@ public class ConnSQL {
     public void updateSet(String table, String col, String where){
         try{
             conn.createStatement().executeQuery("UPDATE "+ table +" SET "+col+" WHERE "+where);
+            Log.d("11111", "getSetWithoutEle: "+"UPDATE "+ table +" SET "+col+" WHERE "+where);
         }catch (SQLException e) {
             Log.d("ERROR UPDATE SET", "updateSet: "+e);
         }

@@ -66,8 +66,9 @@ public class LocationDetails extends AppCompatActivity {
         locName = findViewById(R.id.labeled);
         ratingBar = findViewById(R.id.ratingBar);
         imB = findViewById(R.id.exitBtn);
+
         ticketPageBtn = findViewById(R.id.ticket_page);
-//        favorB = findViewById(R.id.favor_ip);
+        favorB = findViewById(R.id.addFav);
         locationID = getIntent().getIntExtra("LocationID",0);
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
@@ -79,7 +80,10 @@ public class LocationDetails extends AppCompatActivity {
                     } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
-
+        favorB.setOnClickListener(v->{
+            c.updateSet("Location","isLiked = '1'","City_ID = '"+locationID+"'");
+            Toast.makeText(this, "add Favorite List", Toast.LENGTH_SHORT).show();
+        });
         openMapbtn.setOnClickListener(v -> {
             Intent intent = new Intent(LocationDetails.this, MapsActivity.class);
             intent.putExtra("lat",pos.latitude);
@@ -90,9 +94,6 @@ public class LocationDetails extends AppCompatActivity {
         });
 
         ratingBar.setRating(rating);
-//        favorB.setOnClickListener(v -> {
-//
-//        });
         imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v
