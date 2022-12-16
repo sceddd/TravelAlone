@@ -22,6 +22,7 @@ import com.example.myapplication.database.ConnSQL;
 import com.example.myapplication.model.Location;
 import com.example.myapplication.model.LocationAdapter;
 import com.example.myapplication.model.LocationInterface;
+import com.google.android.gms.maps.model.LatLng;
 //import com.example.myapplication.model.WikiLoc;
 
 import java.sql.ResultSet;
@@ -31,10 +32,6 @@ import java.util.ArrayList;
 public class LocationView extends Fragment implements LocationInterface {
     private RecyclerView recyclerView;
     ArrayList<Location> locations = new ArrayList<>();
-    // ------------------------------------------------------------
-    //                    RecyclerView Location                  //
-    // ------------------------------------------------------------
-
 
     @Nullable
     @Override
@@ -58,8 +55,7 @@ public class LocationView extends Fragment implements LocationInterface {
         try {
             ResultSet rs = c.getFullSet("LOCATION");
             while (rs.next()){
-                Location location = new Location(rs.getInt("locationID"),rs.getString("locationName"),
-                    rs.getString("phoneNumber"),rs.getFloat("rating"), rs.getString("suggestionDay"));
+                Location location = new Location(rs.getInt("locationID"),rs.getString("locationName"),rs.getFloat("rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")));
                 locations.add(location);
             }
         }
@@ -70,11 +66,7 @@ public class LocationView extends Fragment implements LocationInterface {
     @Override
     public void onClickLocation(int pos) {
         Intent intent = new Intent(getContext(), LocationDetails.class);
-        intent.putExtra("Name",locations.get(pos).getLocName());
         intent.putExtra("LocationID",locations.get(pos).getLocId());
-        intent.putExtra("PLocation",locations.get(pos).getLocNumber());
-        intent.putExtra("Rating",locations.get(pos).getRating());
-        intent.putExtra("SuggestDay",locations.get(pos).getSuggestionDate());
         launchLocationDetail.launch(intent);
     }
 
