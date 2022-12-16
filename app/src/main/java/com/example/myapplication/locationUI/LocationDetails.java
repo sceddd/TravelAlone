@@ -18,17 +18,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
 import com.example.myapplication.jsonplaceholder.LocationCities;
+import com.example.myapplication.map.MapsActivity;
 import com.google.android.gms.maps.model.LatLng;
 //import com.example.myapplication.model.WikiLoc;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,13 +44,15 @@ public class LocationDetails extends AppCompatActivity {
     private String locationName;
     private int locationID;
     private float rating;
+    ImageButton openMapbtn;
     TextView description,locName;
     RatingBar ratingBar;
-    ImageButton imB;
+    ImageButton imB,favorB;
     Button ticketPageBtn;
     ArrayList<Bitmap> bitmaps= new ArrayList<>();
     LocationCities locationCities;
     ViewFlipper viewFlipper;
+    boolean favor;
     LatLng pos;
 
 
@@ -60,25 +63,37 @@ public class LocationDetails extends AppCompatActivity {
         setContentView(R.layout.location_details);
         ConnSQL c = new ConnSQL();
         description = findViewById(R.id.description_text);
+        openMapbtn = findViewById(R.id.openMap);
         locName = findViewById(R.id.labeled);
         ratingBar = findViewById(R.id.ratingBar);
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
+        favorB = findViewById(R.id.favor_ip);
         locationID = getIntent().getIntExtra("LocationID",0);
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
             rs.next();
             locationName = rs.getString("Name");
             rating = rs.getFloat("Rating");
-            pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
-        } catch (SQLException e) {
+            Log.d("11111", "onCreate: "+rs.getDouble("Latitude"));
+            pos = new LatLng(rs.getDouble("Latitude"),rs.getDouble("Longtitude"));
+                    } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
-        locName.setText(locationName);
 
+        openMapbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LocationDetails.this, MapsActivity.class);
+            intent.putExtra("lat",pos.latitude);
+            intent.putExtra("long",pos.longitude);
+            intent.putExtra("posName",locationName);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Map open", Toast.LENGTH_LONG).show();
+        });
 
         ratingBar.setRating(rating);
+        favorB.setOnClickListener(v -> {
 
+        });
         imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v
@@ -87,7 +102,7 @@ public class LocationDetails extends AppCompatActivity {
         });
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
-        // get description for the location on wiki
+        // get description for the location on wiki q
         StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(strictMode);
         Retrofit retrofit = new Retrofit.Builder()
@@ -116,13 +131,11 @@ public class LocationDetails extends AppCompatActivity {
     public void createViewFlipper(){
         String exception = "Hà Nội Hồ Chí Minh",title= locationName.replace(" ", "_");
         if (!exception.contains(locationName)) {
-            Log.d("1111", "createViewFlipper: touchssss");
             title = title.concat("_province");
         }
         else {
             title = locationName.equals("Hà_Nội") ? "Ho Chi Minh city" : "Hanoi" ;
         }
-        Log.d("11111", "createViewFlipper: "+title);
         ArrayList<Bitmap> bitmap = getImageAndDesApi(title);
         viewFlipper = findViewById(R.id.flipView);
         for (Bitmap i:bitmap){
@@ -169,5 +182,9 @@ public class LocationDetails extends AppCompatActivity {
             Log.d("111111111111", "onCreate: "+e);
         }
         return bitmaps;
+    }
+
+    public void onOpenMap(View view) {
+
     }
 }

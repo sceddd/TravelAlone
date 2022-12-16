@@ -10,26 +10,26 @@
         android:id="@+id/flipView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </ViewFlipper>
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginHorizontal="25dp"
+        android:id="@+id/infoView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rounded_view"
+        android:layout_marginHorizontal="25dp"
         android:layout_marginBottom="80dp"
-        android:id="@+id/infoView">
+        android:background="@drawable/rounded_view">
 
         <TextView
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="10dp"
             android:id="@+id/labeled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/text"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -38,14 +38,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RatingBar
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="10dp"
             android:id="@+id/ratingBar"
             style="@android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:max="5"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
             android:progressBackgroundTint="@color/darkColor"
             android:progressTint="@color/duskYellow"
             android:scaleX=".5"
@@ -57,12 +57,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="2dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/descriptionText"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -71,6 +71,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labeled" />
 
+        <ImageButton
+            android:id="@+id/openMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rm_vector_background"
+            android:src="@drawable/ic_baseline_favorite_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="No location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labeled"
+            android:layout_marginBottom="200dp"
+            android:onClick="onOpenMap"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -85,7 +100,7 @@
         android:textColor="@color/white" />
 
     <ImageButton
-        android:id="@+id/map_ip"
+        android:id="@+id/favor_ip"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignBaseline="@+id/infoView"
@@ -103,4 +118,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_left"/>
+
 </RelativeLayout>
