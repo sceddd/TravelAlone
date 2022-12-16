@@ -36,7 +36,7 @@ public class LocationView extends Fragment implements LocationInterface {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.recycler_view_location,container,false);
+        return inflater.inflate(R.layout.fragment_discover,container,false);
     }
     public ArrayList<Location> getLocations(){
         return locations;
@@ -45,7 +45,7 @@ public class LocationView extends Fragment implements LocationInterface {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpDatabase();
-        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.rv_discover);
         LocationAdapter locationAdapter = new LocationAdapter(getContext(),locations,this);
         recyclerView.setAdapter(locationAdapter);
         recyclerView.setHasFixedSize(true);
