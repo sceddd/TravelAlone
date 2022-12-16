@@ -38,6 +38,17 @@ public class Location {
         this.locationName = locName;
     }
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "region='" + region + '\'' +
+                ", locationName='" + locationName + '\'' +
+                ", pos=" + pos +
+                ", locationID=" + locationID +
+                ", rating=" + rating +
+                '}';
+    }
+
     public int getLocId(){
         return locationID;
     }
