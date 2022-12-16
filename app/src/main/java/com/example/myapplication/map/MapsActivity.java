@@ -1,8 +1,9 @@
-package com.example.myapplication.locationUI;
-
-import android.os.Bundle;
+package com.example.myapplication.map;
 
 import androidx.fragment.app.FragmentActivity;
+
+import android.os.Bundle;
+import android.util.Log;
 
 import com.example.myapplication.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,18 +12,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.myapplication.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
-    //private ActivityMapsBinding binding;
+    private ActivityMapsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        binding = ActivityMapsBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-        setContentView(R.layout.activity_maps);
+        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -40,12 +43,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-         double position = getIntent().getExtras().getDouble("Pos", Double.parseDouble(" "));
-//        double position = getIntent().getExtras().getDouble("Pos", Double.parseDouble(""));
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(10.92222, 108.10944);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        double lat =getIntent().getDoubleExtra("lat",0);
+        double lon =getIntent().getDoubleExtra("long",0);
+        String posName = getIntent().getStringExtra("posName");
+            LatLng pos = new LatLng(lat, lon);
+        mMap.addMarker(new MarkerOptions().position(pos).title("Marker in "+posName));
+        float zoomLevel = 16.0f; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, zoomLevel));
     }
 }

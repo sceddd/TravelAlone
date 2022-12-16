@@ -24,12 +24,12 @@ import android.widget.ViewFlipper;
 import com.example.myapplication.R;
 import com.example.myapplication.database.ConnSQL;
 import com.example.myapplication.jsonplaceholder.LocationCities;
+import com.example.myapplication.map.MapsActivity;
 import com.google.android.gms.maps.model.LatLng;
 //import com.example.myapplication.model.WikiLoc;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,29 +73,21 @@ public class LocationDetails extends AppCompatActivity {
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
             rs.next();
-<<<<<<< HEAD
-            locationName = rs.getString("locationName");
-            rating = rs.getFloat("rating");
-            pos = new LatLng(rs.getDouble("Longitude"),rs.getDouble("Latitude"));
-
-
-=======
             locationName = rs.getString("Name");
             rating = rs.getFloat("Rating");
-            pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
->>>>>>> a0c0c9a4321f27f471f542b20c47c7847b3b8a03
-        } catch (SQLException e) {
+            Log.d("11111", "onCreate: "+rs.getDouble("Latitude"));
+            pos = new LatLng(rs.getDouble("Latitude"),rs.getDouble("Longtitude"));
+                    } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
 
-        openMapbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LocationDetails.this,MapsActivity.class);
-                intent.putExtra("Pos",pos);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(),"Map open", Toast.LENGTH_LONG).show();
-            }
+        openMapbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(LocationDetails.this, MapsActivity.class);
+            intent.putExtra("lat",pos.latitude);
+            intent.putExtra("long",pos.longitude);
+            intent.putExtra("posName",locationName);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Map open", Toast.LENGTH_LONG).show();
         });
 
         ratingBar.setRating(rating);
@@ -139,13 +131,11 @@ public class LocationDetails extends AppCompatActivity {
     public void createViewFlipper(){
         String exception = "Hà Nội Hồ Chí Minh",title= locationName.replace(" ", "_");
         if (!exception.contains(locationName)) {
-            Log.d("1111", "createViewFlipper: touchssss");
             title = title.concat("_province");
         }
         else {
             title = locationName.equals("Hà_Nội") ? "Ho Chi Minh city" : "Hanoi" ;
         }
-        Log.d("11111", "createViewFlipper: "+title);
         ArrayList<Bitmap> bitmap = getImageAndDesApi(title);
         viewFlipper = findViewById(R.id.flipView);
         for (Bitmap i:bitmap){

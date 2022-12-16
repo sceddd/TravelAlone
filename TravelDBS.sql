@@ -1,8 +1,8 @@
 drop database TravelDBS;
 create database TravelDBS;
-
+go
 use TravelDBS
-drop table Location;
+
 CREATE TABLE [Users] (
   [userID] int IDENTITY(1,1) PRIMARY KEY,
   [fullName] varchar(50),
@@ -46,7 +46,7 @@ INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (20
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (21,N'Gia Lai','Central Highlands',1080,13.98361,2);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (22,N'Hà Giang','Northeast',105.031311,22.806907,5);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (23,N'Hà Nam','Mekong Delta River',106.009828,20.541459,4);
-INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (24,N'Hà Nội;','Mekong Delta River',105.85,21.03333,1);
+INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (24,N'Hà Nội','Mekong Delta River',105.85,21.03333,1);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (25,N'Hà Tĩnh','North Central',105.9075,18.34083,2);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (26,N'Hải Dương','Mekong Delta River',106.3125,20.93972,4);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (27,N'Hải Phòng','Mekong Delta River',106.68028,20.86194,5);
@@ -88,8 +88,10 @@ INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (62
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (63,N'Yên Bái','Northwest',104.89861,21.71667,4);
 GO
 drop table HistoryBook
+SELECT top 10 * FROM Location ORDER BY Rating DESC
 select * from Users
 SELECT * FROM USERS
 select * from Location
+SELECT * FROM LOCATION WHERE City_ID IN (44,61,63)
 SELECT userID FROM [USERS] WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'
 SELECT userID FROM USERS WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'
