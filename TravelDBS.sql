@@ -1,8 +1,8 @@
-drop database TravelDBS;
+
 create database TravelDBS;
 go
 use TravelDBS
-
+go
 CREATE TABLE [Users] (
   [userID] int IDENTITY(1,1) PRIMARY KEY,
   [fullName] varchar(50),
@@ -87,11 +87,3 @@ INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (61
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (62,N'Vĩnh Phúc','Mekong Delta River',105.60611,21.29889,2);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (63,N'Yên Bái','Northwest',104.89861,21.71667,4);
 GO
-drop table HistoryBook
-SELECT top 10 * FROM Location ORDER BY Rating DESC
-select * from Users
-SELECT * FROM USERS
-select * from Location
-SELECT * FROM LOCATION WHERE City_ID IN (44,61,63)
-SELECT userID FROM [USERS] WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'
-SELECT userID FROM USERS WHERE phoneNumber = '0911485802' and email = 'socdia07@gmail.com'

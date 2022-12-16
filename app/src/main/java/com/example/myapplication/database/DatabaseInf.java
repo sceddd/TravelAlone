@@ -11,9 +11,7 @@ public class DatabaseInf {
         String ip = "192.168.0.103";        // switch this ip to your ip address
         this.url = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";databasename=" + db + ";user=" + username + ";"+"password=" + password + ";";
     }
-
     public String getDb(){
         return url;
     }
-
 }
