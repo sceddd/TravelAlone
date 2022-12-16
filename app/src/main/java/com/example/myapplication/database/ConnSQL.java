@@ -27,6 +27,7 @@ public class ConnSQL {
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
             connectionURL = databaseInf.getDb();
+            Log.d("11111111111111", "getConnection: ");
             conn = DriverManager.getConnection(connectionURL);
             Log.d("ERROR LOGIN DATABASE", "getConnection: ");
         }catch(Exception e) {
@@ -45,8 +46,10 @@ public class ConnSQL {
         ResultSet rs = null;
         try {
             String query = "SELECT " + eles + " FROM " +table +" WHERE "+where;
-            if (where.equals(""))
+            Log.d("11111", "getSetWithoutEle: "+query);
+            if (where.equals("")) {
                 query = query.replace(" WHERE "+where,"");
+            }
             rs = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY).executeQuery(query);
         }catch (SQLException e){
             Log.d("11111111", "getSetWithoutEle: "+e);
@@ -70,4 +73,3 @@ public class ConnSQL {
         }
     }
 }
-

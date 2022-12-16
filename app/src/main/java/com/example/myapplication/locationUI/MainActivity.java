@@ -1,11 +1,15 @@
 package com.example.myapplication.locationUI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.appcompat.widget.SearchView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.myapplication.R;
 import com.example.myapplication.model.MyViewPageAdapter;
@@ -29,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        customActionBar();
+
         setContentView(R.layout.activity_main);
+        setupBotNav();
+    }
+
+    public void setupBotNav(){
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -41,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.bottom_home){
                 viewPager2.setCurrentItem(0);
             }
-            if (id == R.id.bottom_favorite){
+            if (id == R.id.bottom_location){
                 viewPager2.setCurrentItem(1);
             }
-            if (id == R.id.bottom_location){
+            if (id == R.id.bottom_favorite){
                 viewPager2.setCurrentItem(2);
             }
             if (id == R.id.bottom_more){
@@ -61,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_home).setChecked(true);
                         break;
-                    case 1:
+                    case 2:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_favorite).setChecked(true);
                         break;
-                    case 2:
+                    case 1:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
                         break;
                     case 3:
@@ -78,36 +90,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Type here to search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
+                viewPager2.setCurrentItem(1);
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
-
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.menu_search:
-//                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
-                SearchView searchView = (SearchView) item.getActionView();
-                searchView.setQueryHint("Type here to search");
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
 
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        return false;
-                    }
-                });
-                break;
+    public void customActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Travel ALone");
+        actionBar.setSubtitle("");
+        actionBar.setIcon(R.drawable.ic_logo);
 
-            case R.id.menu_user:
-                Toast.makeText(this, "user setting", Toast.LENGTH_SHORT).show();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
-
 }

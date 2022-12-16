@@ -68,14 +68,20 @@ public class LocationDetails extends AppCompatActivity {
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
         locationID = getIntent().getIntExtra("LocationID",0);
-        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
+        ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
             rs.next();
+<<<<<<< HEAD
             locationName = rs.getString("locationName");
             rating = rs.getFloat("rating");
             pos = new LatLng(rs.getDouble("Longitude"),rs.getDouble("Latitude"));
 
 
+=======
+            locationName = rs.getString("Name");
+            rating = rs.getFloat("Rating");
+            pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
+>>>>>>> a0c0c9a4321f27f471f542b20c47c7847b3b8a03
         } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
@@ -95,7 +101,7 @@ public class LocationDetails extends AppCompatActivity {
         imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v
-                    , "LOCATIONID = " + locationID);
+                    , "City_ID = " + locationID);
             r.setIsIndicator(true);
         });
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
@@ -127,12 +133,21 @@ public class LocationDetails extends AppCompatActivity {
             });
 
     public void createViewFlipper(){
-        String title = locationName.replace(" ","_").concat("_province");
+        String exception = "Hà Nội Hồ Chí Minh",title= locationName.replace(" ", "_");
+        if (!exception.contains(locationName)) {
+            Log.d("1111", "createViewFlipper: touchssss");
+            title = title.concat("_province");
+        }
+        else {
+            title = locationName.equals("Hà_Nội") ? "Ho Chi Minh city" : "Hanoi" ;
+        }
+        Log.d("11111", "createViewFlipper: "+title);
         ArrayList<Bitmap> bitmap = getImageAndDesApi(title);
         viewFlipper = findViewById(R.id.flipView);
         for (Bitmap i:bitmap){
             ImageView imageView = new ImageView(this);
             imageView.setImageBitmap(i);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             viewFlipper.addView(imageView);
         }
 
@@ -164,7 +179,10 @@ public class LocationDetails extends AppCompatActivity {
                 JSONObject o = new JSONObject(Objects.requireNonNull(imageCallRequest.execute().body()));
                 String imageUrl = o.getJSONObject("query").getJSONArray("pages").getJSONObject(0).getJSONArray("imageinfo").getJSONObject(0).getString("url");
                 URL url = new URL(imageUrl);
-                bitmaps.add(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+                Bitmap bit = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                int nh = (int) ( bit.getHeight() * (512.0 / bit.getWidth()) );
+                Bitmap scaled = Bitmap.createScaledBitmap(bit, 512, nh, true);
+                bitmaps.add(scaled);
             }
         }catch (Exception e){
             Log.d("111111111111", "onCreate: "+e);

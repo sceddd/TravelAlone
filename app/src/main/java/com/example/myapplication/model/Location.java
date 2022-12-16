@@ -9,8 +9,9 @@ public class Location {
     private int locationID;
     private float rating;
 
-    public Location(int locId, String locName, float rating,LatLng pos) {
+    public Location(int locId, String locName, float rating,LatLng pos,String region) {
         this.locationID = locId;
+        this.region = region;
         this.locationName = locName;
         this.pos = pos;
         this.rating = rating;
@@ -35,6 +36,17 @@ public class Location {
 
     public void setLocName(String locName) {
         this.locationName = locName;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "region='" + region + '\'' +
+                ", locationName='" + locationName + '\'' +
+                ", pos=" + pos +
+                ", locationID=" + locationID +
+                ", rating=" + rating +
+                '}';
     }
 
     public int getLocId(){
