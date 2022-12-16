@@ -24,7 +24,7 @@ CREATE TABLE [HistoryBook](
 )
 GO
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (1,'An Giang','Southwest',105.41833,10.37528,5);
-INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (2,N'Bà rịa – Vũng tàu','Southeast',107.08472,10.34583,3);
+INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (2,N'Bà Rịa – Vũng Tàu','Southeast',107.08472,10.34583,3);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (3,N'Bắc Giang','Northeast',106.18694,21.29139,2);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (4,N'Bắc Kạn','Northeast',105.756246,22.306994,4);
 INSERT INTO Location (City_ID,Name,Region,Longtitude,Latitude,Rating) VALUES (5,N'Bạc Liêu','Southwest',105.75194,9.25889,5);
