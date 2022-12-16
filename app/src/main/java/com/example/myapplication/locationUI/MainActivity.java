@@ -31,7 +31,7 @@ import java.time.LocalDate;
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private BottomNavigationView bottomNavigationView;
-
+    MyViewPageAdapter myViewPageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        MyViewPageAdapter myViewPageAdapter = new MyViewPageAdapter(this);
+
+        myViewPageAdapter = new MyViewPageAdapter(this);
         viewPager2.setAdapter(myViewPageAdapter);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -95,14 +96,16 @@ public class MainActivity extends AppCompatActivity {
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to search");
-        searchView.setOnClickListener(v->{
-            bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
+        searchView.setOnSearchClickListener(v-> {
             viewPager2.setCurrentItem(1);
-
+            Log.d("111111111111111111", "onCreateOptionsMenu: ");
+            bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                LocationView frag = myViewPageAdapter.getFragment();
+                frag.onTextFind(query);
                 return false;
             }
 

@@ -36,15 +36,12 @@ import java.util.Arrays;
 public class LocationView extends Fragment implements LocationInterface {
     private RecyclerView recyclerView;
     ArrayList<Location> locations = new ArrayList<>();
-
+    LocationAdapter locationAdapter;
     TabLayout tabs;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_discover,container,false);
-    }
-    public ArrayList<Location> getLocations(){
-        return locations;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -52,7 +49,7 @@ public class LocationView extends Fragment implements LocationInterface {
         recyclerView = view.findViewById(R.id.rv_discover);
         tabs = view.findViewById(R.id.tl_discover);
         locations = setUpDatabase("NorthEast");
-        LocationAdapter locationAdapter = new LocationAdapter(getContext(),locations,this);
+        locationAdapter = new LocationAdapter(getContext(),locations,this);
         recyclerView.setAdapter(locationAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -94,12 +91,29 @@ public class LocationView extends Fragment implements LocationInterface {
         }
         return loc;
     }
+    @SuppressLint("NotifyDataSetChanged")
+    protected void onTextFind(String text){
+        ConnSQL c = new ConnSQL();
+        ArrayList<Location> locs = new ArrayList<>();
+        Log.d("11111", "onTextFind: "+text);
+        try {
+            ResultSet rs = c.executeQ("SELECT * " + "from Location" + " where lower(Name) like '%"+text+"%'");
+            while (rs.next()) {
+                Location location = new Location(rs.getInt("City_ID"),rs.getString("Name"),rs.getFloat("Rating"),new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude")),rs.getString("Region"));
+                locs.add(location);
+            }
+        } catch (SQLException e) {
+            Log.d("error", "onTextFind "+e);
+        }
+        locations.clear();
+        if (locs.size()==0){
+            return;
+        }
+        locations.addAll(locs);
+        locationAdapter.notifyDataSetChanged();
+    }
     @Override
     public void onClickLocation(int pos) {
-
-
-//        launchLocationDetail.launch(intent);
-
         Intent intent = new Intent(getContext(), LocationDetails.class);
         intent.putExtra("LocationID",locations.get(pos).getLocId());
         startActivity(intent);
