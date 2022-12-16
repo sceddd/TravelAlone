@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -43,8 +44,8 @@ public class LocationDetails extends AppCompatActivity {
     private String descript;
     TextView description,locName;
     RatingBar ratingBar;
-//    ImageButton imB,ticketPageBtn;
-
+    ImageButton imB;
+    Button ticketPageBtn;
 
 
     ViewFlipper viewFlipper;
@@ -60,8 +61,8 @@ public class LocationDetails extends AppCompatActivity {
         description = findViewById(R.id.description_text);
         locName = findViewById(R.id.labeled);
         ratingBar = findViewById(R.id.ratingBar);
-//        imB = findViewById(R.id.exitBtn);
-//        ticketPageBtn = findViewById(R.id.ticket_page);
+        imB = findViewById(R.id.exitBtn);
+        ticketPageBtn = findViewById(R.id.ticket_page);
         locationID = getIntent().getIntExtra("LocationID",0);
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE LOCATIONID = '"+locationID+"'");
         try {
@@ -75,15 +76,14 @@ public class LocationDetails extends AppCompatActivity {
         }
         locName.setText(locationName);
         ratingBar.setRating(rating);
-//        imB.setColorFilter(Color.argb(255, 255, 255, 255));
-//
-//        imB.setOnClickListener(v -> finish());
+
+        imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v
                     , "LOCATIONID = " + locationID);
             r.setIsIndicator(true);
         });
-//        ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
+        ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
         // get description for the location on wiki
         StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -125,7 +125,7 @@ public class LocationDetails extends AppCompatActivity {
 //        imB.setOnClickListener(v -> finish());
 //        ratingBar.setOnRatingBarChangeListener((r,v,b)-> c.updateSet("LOCATION","RATING = "+ v
 //                , "LOCATIONID = "+ locationID));
-//        ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
+
 //
 //        // get description for the location on wiki
 //        StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
