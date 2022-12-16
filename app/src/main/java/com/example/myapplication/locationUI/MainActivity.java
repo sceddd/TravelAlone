@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
                 bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
+                viewPager2.setCurrentItem(1);
                 return false;
             }
         });
