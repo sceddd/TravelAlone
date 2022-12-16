@@ -120,6 +120,7 @@ public class LocationDetails extends AppCompatActivity {
         for (Bitmap i:bitmap){
             ImageView imageView = new ImageView(this);
             imageView.setImageBitmap(i);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             viewFlipper.addView(imageView);
         }
 
