@@ -1,15 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="5dp"
+
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".locationUI.MoreFragment"
-    android:background="@color/teal_200">
-
-    <!-- TODO: Update blank fragment layout -->
+    android:background="@color/white">
     <TextView
+        android:layout_marginVertical="2dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/button_border"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center"
+        android:text="npptGithub"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="More" />
+        android:layout_height="50dp"
+        app:drawableLeftCompat="@drawable/ic_github"
+        tools:ignore="RtlSymmetry" />
+    <TextView
+        android:layout_marginVertical="2dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/button_border"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center"
+        android:text="sceddd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:drawableLeftCompat="@drawable/ic_github"
+        tools:ignore="RtlSymmetry" />
+    <TextView
+        android:layout_marginVertical="2dp"
 
-</FrameLayout>
+        android:paddingStart="10dp"
+        android:background="@drawable/button_border"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center"
+        android:text="TwanGermany"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:drawableLeftCompat="@drawable/ic_github"
+        tools:ignore="RtlSymmetry" />
+    <TextView
+        android:layout_marginVertical="2dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/button_border"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center"
+        android:text="Demo video"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:drawableLeftCompat="@drawable/ic_video"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:layout_marginVertical="2dp"
+        android:paddingStart="10dp"
+        android:background="@drawable/button_border"
+        android:textSize="15sp"
+        android:gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center"
+        android:text="Report"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:drawableLeftCompat="@drawable/ic_report"
+        tools:ignore="RtlSymmetry" />
+</LinearLayout>
