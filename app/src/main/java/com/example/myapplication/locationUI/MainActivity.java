@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         customActionBar();
 
         setContentView(R.layout.activity_main);
+        setupBotNav();
+    }
+
+    public void setupBotNav(){
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -69,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_home).setChecked(true);
                         break;
-                    case 1:
+                    case 2:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_favorite).setChecked(true);
                         break;
-                    case 2:
+                    case 1:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
                         break;
                     case 3:
