@@ -67,7 +67,7 @@ public class LocationDetails extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         imB = findViewById(R.id.exitBtn);
         ticketPageBtn = findViewById(R.id.ticket_page);
-        favorB = findViewById(R.id.favor_ip);
+//        favorB = findViewById(R.id.favor_ip);
         locationID = getIntent().getIntExtra("LocationID",0);
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
@@ -90,9 +90,9 @@ public class LocationDetails extends AppCompatActivity {
         });
 
         ratingBar.setRating(rating);
-        favorB.setOnClickListener(v -> {
-
-        });
+//        favorB.setOnClickListener(v -> {
+//
+//        });
         imB.setOnClickListener(v -> finish());
         ratingBar.setOnRatingBarChangeListener((r,v,b)-> {
             c.updateSet("LOCATION", "RATING = " + v

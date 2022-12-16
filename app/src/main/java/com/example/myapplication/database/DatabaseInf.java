@@ -8,7 +8,7 @@ public class DatabaseInf {
         String username = "sceddd";
         String db = "TravelDBS";
         String port = "1433";
-        String ip = "192.168.0.103";        // switch this ip to your ip address
+        String ip = "192.168.1.139";        // switch this ip to your ip address
         this.url = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";databasename=" + db + ";user=" + username + ";"+"password=" + password + ";";
     }
 

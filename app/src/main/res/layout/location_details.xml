@@ -71,21 +71,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labeled" />
 
-        <ImageButton
-            android:id="@+id/openMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rm_vector_background"
-            android:src="@drawable/ic_baseline_favorite_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:contentDescription="No location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ratingBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labeled"
-            android:layout_marginBottom="200dp"
-            android:onClick="onOpenMap"
-            />
+<!--        <ImageButton-->
+<!--            android:id="@+id/openMap"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/rm_vector_background"-->
+<!--            android:src="@drawable/ic_baseline_favorite_24"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:contentDescription="No location"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/ratingBar"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/labeled"-->
+<!--            android:layout_marginBottom="200dp"-->
+<!--            android:onClick="onOpenMap"-->
+<!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -100,7 +100,8 @@
         android:textColor="@color/white" />
 
     <ImageButton
-        android:id="@+id/favor_ip"
+        android:onClick="onOpenMap"
+        android:id="@+id/openMap"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignBaseline="@+id/infoView"
@@ -108,7 +109,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/rm_vector_background"
-        android:src="@drawable/ic_baseline_favorite_24" />
+        android:src="@drawable/ic_baseline_location_on_24" />
 
     <ImageButton
         android:id="@+id/exitBtn"
@@ -118,5 +119,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_left"/>
+    <ImageButton
 
+        android:id="@+id/addFav"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignBaseline="@+id/infoView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/rm_vector_background"
+        android:src="@drawable/ic_baseline_favorite_24" />
 </RelativeLayout>
