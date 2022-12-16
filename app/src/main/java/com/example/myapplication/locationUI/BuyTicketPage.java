@@ -126,7 +126,7 @@ public class BuyTicketPage extends AppCompatActivity {
         PendingIntent returnDayNotiIntent = PendingIntent.getBroadcast(BuyTicketPage.this,0,returnDay,0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         long timeToLaunchGoNotification = System.currentTimeMillis() + 1000 * 10;// 10 secs //getTime(year_pick.getValue(),month_pick.getValue()-1,day_pick.getValue());
-        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 20;//20 secs ;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
+        long timeToLaunchReturnNotification = System.currentTimeMillis() + 1000 * 10;//20 secs ;//getTime(return_year_pick.getValue(),return_month_pick.getValue(),return_day_pick.getValue());
         alarmManager.set(AlarmManager.RTC_WAKEUP,timeToLaunchGoNotification,goneDayNotiIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, 
                 timeToLaunchReturnNotification,returnDayNotiIntent);

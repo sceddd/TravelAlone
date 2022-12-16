@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,7 +37,6 @@ public class LocationView extends Fragment implements LocationInterface {
     private RecyclerView recyclerView;
     ArrayList<Location> locations = new ArrayList<>();
 
-    //            });northeast northwest southeast north_central south_central southwest mekong_delta_river
     TabLayout tabs;
     @Nullable
     @Override
@@ -57,6 +58,7 @@ public class LocationView extends Fragment implements LocationInterface {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ArrayList<String> region = new ArrayList<>(Arrays.asList("North East","Southwest", "SouthEast","North Central","South Central","SouthWest","Mekong Delta River"));
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 locations.clear();
@@ -99,14 +101,14 @@ public class LocationView extends Fragment implements LocationInterface {
         startActivity(intent);
     }
 
-//    ActivityResultLauncher<Intent> launchLocationDetail = registerForActivityResult(
-//            new ActivityResultContracts.StartActivityForResult(),
-//            result -> {
-//                if (result.getResultCode() == Activity.RESULT_OK) {
-//                    Intent intent = result.getData();
-//                    if (intent!=null) {
-//                    }
-//                }
+    ActivityResultLauncher<Intent> launchLocationDetail = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent intent = result.getData();
+                    if (intent != null) {
+                    }
+                }
 
-    //
+            });
 }

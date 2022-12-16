@@ -1,13 +1,10 @@
 package com.example.myapplication.model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.myapplication.locationUI.DiscoverFragment;
 import com.example.myapplication.locationUI.FavFragment;
 import com.example.myapplication.locationUI.HomeFragment;
 import com.example.myapplication.locationUI.LocationView;

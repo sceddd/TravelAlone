@@ -3,7 +3,9 @@ package com.example.myapplication.locationUI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
@@ -90,10 +92,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-
         MenuItem menuItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type here to search");
+        searchView.setOnClickListener(v->{
+            bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
+            viewPager2.setCurrentItem(1);
+
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -103,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
-                viewPager2.setCurrentItem(1);
                 return false;
             }
         });
@@ -114,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void customActionBar(){
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle("Travel ALone");
         actionBar.setSubtitle("");
