@@ -29,6 +29,7 @@ public class ConnSQL {
             connectionURL = databaseInf.getDb();
             Log.d("11111111111111", "getConnection: ");
             conn = DriverManager.getConnection(connectionURL);
+            Log.d("ERROR LOGIN DATABASE", "getConnection: ");
         }catch(Exception e) {
             Log.e("ERROR LOGIN DATABASE", ""+e);
         }
