@@ -96,9 +96,14 @@ public class LocationView extends Fragment implements LocationInterface {
     }
     @Override
     public void onClickLocation(int pos) {
+
+
+//        launchLocationDetail.launch(intent);
+
         Intent intent = new Intent(getContext(), LocationDetails.class);
         intent.putExtra("LocationID",locations.get(pos).getLocId());
         startActivity(intent);
+
     }
 
     ActivityResultLauncher<Intent> launchLocationDetail = registerForActivityResult(

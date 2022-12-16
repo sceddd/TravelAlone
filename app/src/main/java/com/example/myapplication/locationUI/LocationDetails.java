@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.myapplication.R;
@@ -43,6 +44,7 @@ public class LocationDetails extends AppCompatActivity {
     private String locationName;
     private int locationID;
     private float rating;
+    ImageButton openMapbtn;
     TextView description,locName;
     RatingBar ratingBar;
     ImageButton imB,favorB;
@@ -61,6 +63,7 @@ public class LocationDetails extends AppCompatActivity {
         setContentView(R.layout.location_details);
         ConnSQL c = new ConnSQL();
         description = findViewById(R.id.description_text);
+        openMapbtn = findViewById(R.id.openMap);
         locName = findViewById(R.id.labeled);
         ratingBar = findViewById(R.id.ratingBar);
         imB = findViewById(R.id.exitBtn);
@@ -70,14 +73,30 @@ public class LocationDetails extends AppCompatActivity {
         ResultSet rs = c.executeQ("SELECT * FROM LOCATION WHERE City_ID = '"+locationID+"'");
         try {
             rs.next();
+<<<<<<< HEAD
+            locationName = rs.getString("locationName");
+            rating = rs.getFloat("rating");
+            pos = new LatLng(rs.getDouble("Longitude"),rs.getDouble("Latitude"));
+
+
+=======
             locationName = rs.getString("Name");
             rating = rs.getFloat("Rating");
             pos = new LatLng(rs.getDouble("Longtitude"),rs.getDouble("Latitude"));
+>>>>>>> a0c0c9a4321f27f471f542b20c47c7847b3b8a03
         } catch (SQLException e) {
             Log.d("ERROR GET VALUE", "onCreate: "+e);
         }
-        locName.setText(locationName);
 
+        openMapbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LocationDetails.this,MapsActivity.class);
+                intent.putExtra("Pos",pos);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Map open", Toast.LENGTH_LONG).show();
+            }
+        });
 
         ratingBar.setRating(rating);
         favorB.setOnClickListener(v -> {
@@ -91,7 +110,7 @@ public class LocationDetails extends AppCompatActivity {
         });
         ticketPageBtn.setOnClickListener(this::onClickToBuyTicket);
 
-        // get description for the location on wiki
+        // get description for the location on wiki q
         StrictMode.ThreadPolicy strictMode = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(strictMode);
         Retrofit retrofit = new Retrofit.Builder()
@@ -173,5 +192,9 @@ public class LocationDetails extends AppCompatActivity {
             Log.d("111111111111", "onCreate: "+e);
         }
         return bitmaps;
+    }
+
+    public void onOpenMap(View view) {
+
     }
 }
