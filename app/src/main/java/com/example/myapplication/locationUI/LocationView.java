@@ -43,6 +43,7 @@ public class LocationView extends Fragment implements LocationInterface {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_discover,container,false);
     }
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -53,9 +54,9 @@ public class LocationView extends Fragment implements LocationInterface {
         recyclerView.setAdapter(locationAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        ArrayList<String> region = new ArrayList<>(Arrays.asList("North East","Southwest", "SouthEast","North Central","South Central","SouthWest","Mekong Delta River"));
+        ArrayList<String> region = new ArrayList<>(Arrays.asList("NorthEast","Southwest", "SouthEast","North Central","South Central","SouthWest","Mekong Delta River"));
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @SuppressLint("NotifyDataSetChanged")
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 locations.clear();
@@ -70,7 +71,9 @@ public class LocationView extends Fragment implements LocationInterface {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                locations.clear();
+                locations.addAll(setUpDatabase(region.get(tab.getPosition())));
+                locationAdapter.notifyDataSetChanged();
             }
         });
     }
