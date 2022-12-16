@@ -3,12 +3,12 @@
     <item android:id="@+id/bottom_home"
         android:title="@string/bottom_home"
         android:icon="@drawable/ic_baseline_home_24"/>
+    <item android:id="@+id/bottom_location"
+        android:title="Discover"
+        android:icon="@drawable/ic_baseline_location_on_24"/>
     <item android:id="@+id/bottom_favorite"
         android:title="@string/bottom_favorite"
         android:icon="@drawable/ic_baseline_favorite_24"/>
-    <item android:id="@+id/bottom_location"
-        android:title="Discorver"
-        android:icon="@drawable/ic_baseline_location_on_24"/>
     <item android:id="@+id/bottom_more"
         android:title="Us"
         android:icon="@drawable/ic_baseline_more_horiz_24"/>

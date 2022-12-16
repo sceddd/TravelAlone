@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.bottom_home){
                 viewPager2.setCurrentItem(0);
             }
-            if (id == R.id.bottom_favorite){
+            if (id == R.id.bottom_location){
                 viewPager2.setCurrentItem(1);
             }
-            if (id == R.id.bottom_location){
+            if (id == R.id.bottom_favorite){
                 viewPager2.setCurrentItem(2);
             }
             if (id == R.id.bottom_more){

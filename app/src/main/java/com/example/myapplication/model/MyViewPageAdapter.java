@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.myapplication.locationUI.DiscoverFragment;
+import com.example.myapplication.locationUI.FavFragment;
 import com.example.myapplication.locationUI.HomeFragment;
 import com.example.myapplication.locationUI.LocationView;
 import com.example.myapplication.locationUI.MoreFragment;
@@ -26,7 +27,7 @@ public class MyViewPageAdapter extends FragmentStateAdapter {
                 fragment = new LocationView();
                 break;
             case 2:
-                fragment = new DiscoverFragment();
+                fragment = new FavFragment();
                 break;
             case 3:
                 fragment = new MoreFragment();
