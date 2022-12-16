@@ -20,7 +20,7 @@
         android:gravity="center_vertical"
         android:drawablePadding="10dp"
         android:layout_gravity="center"
-        android:text="npptGithub"
+        android:text="npptGithub - 520V0012"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:drawableLeftCompat="@drawable/ic_github"
@@ -35,7 +35,7 @@
         android:gravity="center_vertical"
         android:drawablePadding="10dp"
         android:layout_gravity="center"
-        android:text="sceddd"
+        android:text="sceddd - 520K0091"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:drawableLeftCompat="@drawable/ic_github"
@@ -50,7 +50,7 @@
         android:gravity="center_vertical"
         android:drawablePadding="10dp"
         android:layout_gravity="center"
-        android:text="TwanGermany"
+        android:text="TwanGermany - 520K0078"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:drawableLeftCompat="@drawable/ic_github"
@@ -86,4 +86,5 @@
         android:layout_height="50dp"
         app:drawableLeftCompat="@drawable/ic_report"
         tools:ignore="RtlSymmetry" />
+
 </LinearLayout>
