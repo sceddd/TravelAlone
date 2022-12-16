@@ -1,10 +1,10 @@
 package com.example.myapplication.locationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,25 +51,33 @@ public class MoreFragment extends Fragment {
         switch (id){
             case R.id.tv_nppt:
                 Toast.makeText(getContext(), "tv_nppt", Toast.LENGTH_SHORT).show();
+                accessTo("https://github.com/npptGithub");
                 break;
             case R.id.tv_sceddd:
                 Toast.makeText(getContext(), "tv_sceddd", Toast.LENGTH_SHORT).show();
+                accessTo("https://github.com/sceddd");
                 break;
 
             case R.id.tv_twangermany:
                 Toast.makeText(getContext(), "tv_twangermany", Toast.LENGTH_SHORT).show();
+                accessTo("https://github.com/TwanGermany");
                 break;
 
             case R.id.tv_video:
                 Toast.makeText(getContext(), "tv_video", Toast.LENGTH_SHORT).show();
+                accessTo("https://www.youtube.com/watch?v=sfVy3suWFj8");
                 break;
 
             case R.id.tv_report:
                 Toast.makeText(getContext(),"tv_report", Toast.LENGTH_SHORT).show();
+                accessTo("https://docs.google.com/document/d/1jR_GFyIzwAfttfcxkXzjV44zWsEilJe9/edit");
                 break;
-
         }
     }
 
-
+    public void accessTo(String link){
+        Intent intent = new Intent(getContext(), WebPage.class);
+        intent.putExtra("LINK", link);
+        startActivity(intent);
+    }
 }

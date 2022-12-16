@@ -1,6 +1,7 @@
 package com.example.myapplication.locationUI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         customActionBar();
 
         setContentView(R.layout.activity_main);
+        setupBotNav();
+    }
+
+    public void setupBotNav(){
         viewPager2 = findViewById(R.id.view_pager_2);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -68,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_home).setChecked(true);
                         break;
-                    case 1:
+                    case 2:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_favorite).setChecked(true);
                         break;
-                    case 2:
+                    case 1:
                         bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
                         break;
                     case 3:
@@ -99,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 
                 bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
+                viewPager2.setCurrentItem(1);
                 return false;
             }
         });
@@ -107,8 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void customActionBar(){
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setIcon(R.drawable.logo);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle("Travel ALone");
+        actionBar.setSubtitle("");
+        actionBar.setIcon(R.drawable.ic_logo);
+
     }
 }
