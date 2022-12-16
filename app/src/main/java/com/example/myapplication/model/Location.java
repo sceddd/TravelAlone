@@ -9,8 +9,9 @@ public class Location {
     private int locationID;
     private float rating;
 
-    public Location(int locId, String locName, float rating,LatLng pos) {
+    public Location(int locId, String locName, float rating,LatLng pos,String region) {
         this.locationID = locId;
+        this.region = region;
         this.locationName = locName;
         this.pos = pos;
         this.rating = rating;

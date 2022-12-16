@@ -2,8 +2,10 @@ package com.example.myapplication.locationUI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -82,12 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d("11111", "onOptionsItemSelected: ");
         int id = item.getItemId();
         switch (id){
             case R.id.menu_search:
-//                Toast.makeText(this, "search", Toast.LENGTH_SHORT).show();
+                viewPager2.setCurrentItem(1);
                 SearchView searchView = (SearchView) item.getActionView();
                 searchView.setQueryHint("Type here to search");
                 searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -98,11 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
+
+                        bottomNavigationView.getMenu().findItem(R.id.bottom_location).setChecked(true);
                         return false;
                     }
                 });
                 break;
-
             case R.id.menu_user:
                 Toast.makeText(this, "user setting", Toast.LENGTH_SHORT).show();
                 break;

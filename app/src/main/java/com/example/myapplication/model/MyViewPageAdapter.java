@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -11,7 +13,7 @@ import com.example.myapplication.locationUI.LocationView;
 import com.example.myapplication.locationUI.MoreFragment;
 
 public class MyViewPageAdapter extends FragmentStateAdapter {
-
+    Fragment fragment;
     public MyViewPageAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -21,14 +23,22 @@ public class MyViewPageAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new LocationView();
+                fragment = new LocationView();
+                break;
             case 2:
-                return new DiscoverFragment();
+                fragment = new DiscoverFragment();
+                break;
             case 3:
-                return new MoreFragment();
+                fragment = new MoreFragment();
+                break;
             default:
-                return new HomeFragment();
+                fragment = new HomeFragment();
+                break;
         }
+        return fragment;
+    }
+    public Fragment getFragment() {
+        return fragment;
     }
 
     @Override
