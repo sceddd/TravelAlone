@@ -63,7 +63,6 @@ public class HomeFragment extends Fragment implements LocationInterface {
                     case 0:
                         loc.clear();
                         loc.addAll(setUpDatabase(query1));
-                        Log.d("11111111", "onTabSelected: "+loc);
                         locAdap.notifyDataSetChanged();
                         break;
                     case 1:

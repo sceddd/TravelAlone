@@ -114,7 +114,15 @@ public class LocationDetails extends AppCompatActivity {
             });
 
     public void createViewFlipper(){
-        String title = locationName.replace(" ","_").concat("_province");
+        String exception = "Hà Nội Hồ Chí Minh",title= locationName.replace(" ", "_");
+        if (!exception.contains(locationName)) {
+            Log.d("1111", "createViewFlipper: touchssss");
+            title = title.concat("_province");
+        }
+        else {
+            title = locationName.equals("Hà_Nội") ? "Ho Chi Minh city" : "Hanoi" ;
+        }
+        Log.d("11111", "createViewFlipper: "+title);
         ArrayList<Bitmap> bitmap = getImageAndDesApi(title);
         viewFlipper = findViewById(R.id.flipView);
         for (Bitmap i:bitmap){
@@ -151,7 +159,10 @@ public class LocationDetails extends AppCompatActivity {
                 JSONObject o = new JSONObject(Objects.requireNonNull(imageCallRequest.execute().body()));
                 String imageUrl = o.getJSONObject("query").getJSONArray("pages").getJSONObject(0).getJSONArray("imageinfo").getJSONObject(0).getString("url");
                 URL url = new URL(imageUrl);
-                bitmaps.add(BitmapFactory.decodeStream(url.openConnection().getInputStream()));
+                Bitmap bit = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                int nh = (int) ( bit.getHeight() * (512.0 / bit.getWidth()) );
+                Bitmap scaled = Bitmap.createScaledBitmap(bit, 512, nh, true);
+                bitmaps.add(scaled);
             }
         }catch (Exception e){
             Log.d("111111111111", "onCreate: "+e);

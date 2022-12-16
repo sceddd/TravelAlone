@@ -30,10 +30,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class BuyTicketPage extends AppCompatActivity {
-    // TODO: setting time when user return;
-    // TODO: setting another notification when user go
     Button buy_ticket;
-    EditText email_address_pt,username,phoneNumber;
+    EditText email_address_pt,username,phoneNumber,age;
     int locationID;
     NumberPicker day_pick,year_pick,month_pick,
             return_day_pick,return_month_pick,return_year_pick;
@@ -46,6 +44,7 @@ public class BuyTicketPage extends AppCompatActivity {
         setContentView(R.layout.buy_ticket);
         createNotificationChannel();
         username = findViewById(R.id.user_name_pt);
+        age = findViewById(R.id.age_pt);
         phoneNumber = findViewById(R.id.phone_number_pt);
         buy_ticket = findViewById(R.id.buy_button);
         email_address_pt = findViewById(R.id.email_address_pt);
@@ -91,6 +90,10 @@ public class BuyTicketPage extends AppCompatActivity {
     @SuppressLint("UnspecifiedImmutableFlag")
     public void onBuyClick(View v){
         int userID = 0;
+        if (!(username.length()>0||phoneNumber.length()>0||email_address_pt.length()>0||age.length()>0)){
+            Toast.makeText(this, "Please fill all the space", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
             ResultSet rs = c.getSetWithoutEle("USERS","userID","phoneNumber = '"+phoneNumber.getText()+"' and email = '"+ email_address_pt.getText()+"'");
             userID = rs.getInt("userID");
@@ -145,9 +148,6 @@ public class BuyTicketPage extends AppCompatActivity {
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
         notificationManager.createNotificationChannel(leaveChannel);
         notificationManager.createNotificationChannel(returnChannel);
-    }
-    private void onTripGo(){
-
     }
     private void resetBaseReturnDateVariable() {
 
